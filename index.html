@@ -172,9 +172,9 @@
                     <div class="relative">
                         <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full cursor-pointer" id="user-menu-btn">
                         <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700">
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Perfil</a>
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Histórico</a>
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Configurações</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700" onclick="alert('Perfil do usuário')">Perfil</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700" onclick="alert('Histórico de apostas')">Histórico</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700" onclick="alert('Configurações da conta')">Configurações</a>
                             <div class="border-t border-gray-700"></div>
                             <a href="#" id="logout-btn" class="block px-4 py-2 text-sm hover:bg-gray-700 text-red-500">Sair</a>
                         </div>
@@ -251,11 +251,22 @@
                                     <input type="number" id="slot-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
                                 
-                                <div class="pt-2">
-                                    <button id="spin-slot" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
-                                        Girar Rodas (1 CRÉDITO)
+                                <div>
+                                    <label for="auto-spin-count" class="block text-sm font-medium mb-1">Giros automáticos (1-100)</label>
+                                    <input type="number" id="auto-spin-count" min="1" max="100" value="10" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-2 pt-2">
+                                    <button id="spin-slot" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                        Girar (1x)
+                                    </button>
+                                    <button id="auto-spin-slot" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                        Girar Auto
                                     </button>
                                 </div>
+                                <button id="stop-auto-spin" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
+                                    Parar Giros
+                                </button>
                             </div>
                             
                             <div class="mt-6 pt-4 border-t border-gray-800">
@@ -272,6 +283,10 @@
                                     <div class="flex justify-between">
                                         <span class="text-gray-400">Último Resultado:</span>
                                         <span id="slot-last-result" class="font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Giros Restantes:</span>
+                                        <span id="slot-spins-left" class="font-medium">0</span>
                                     </div>
                                 </div>
                             </div>
@@ -569,8 +584,49 @@
 
             <!-- Games Section (hidden initially) -->
             <div id="games-section" class="hidden">
-                <!-- Seu conteúdo atual de jogos aqui -->
+                <!-- Futebol Virtual -->
                 <div class="mt-8">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-futbol mr-2 text-red-500"></i> Futebol Virtual (Rodadas de 1 minuto)
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Brasileirão -->
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4 flex items-center justify-between">
+                                <span>Times Brasileiros</span>
+                                <button id="new-brazil-round" class="bg-red-600 hover:bg-red-700 text-white text-sm py-1 px-3 rounded">
+                                    Nova Rodada
+                                </button>
+                            </h3>
+                            
+                            <div id="brazil-matches" class="space-y-4">
+                                <div class="text-center py-4 text-gray-600">
+                                    Clique em "Nova Rodada" para gerar partidas
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Europeus -->
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4 flex items-center justify-between">
+                                <span>Times Europeus</span>
+                                <button id="new-europe-round" class="bg-red-600 hover:bg-red-700 text-white text-sm py-1 px-3 rounded">
+                                    Nova Rodada
+                                </button>
+                            </h3>
+                            
+                            <div id="europe-matches" class="space-y-4">
+                                <div class="text-center py-4 text-gray-600">
+                                    Clique em "Nova Rodada" para gerar partidas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seu conteúdo atual de jogos aqui -->
+                <div class="mt-12">
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-gamepad mr-2 text-red-500"></i> Campo Minado
                     </h2>
@@ -1459,10 +1515,14 @@
 
         let slotGame = {
             spinning: false,
-            betAmount: 0
+            betAmount: 0,
+            autoSpins: 0,
+            autoSpinInterval: null
         };
 
         document.getElementById('spin-slot').addEventListener('click', spinSlot);
+        document.getElementById('auto-spin-slot').addEventListener('click', startAutoSpin);
+        document.getElementById('stop-auto-spin').addEventListener('click', stopAutoSpin);
 
         function spinSlot() {
             const bet = parseFloat(document.getElementById('slot-bet-amount').value);
@@ -1519,6 +1579,50 @@
                 
                 spin();
             });
+        }
+
+        function startAutoSpin() {
+            const bet = parseFloat(document.getElementById('slot-bet-amount').value);
+            const spins = parseInt(document.getElementById('auto-spin-count').value);
+            
+            if (isNaN(bet) || bet < 1) {
+                showNotification('O valor mínimo para aposta é R$1,00', 'red');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                showNotification('Saldo insuficiente para esta aposta', 'red');
+                return;
+            }
+            
+            if (isNaN(spins) || spins < 1 || spins > 100) {
+                showNotification('Escolha entre 1 e 100 giros automáticos', 'red');
+                return;
+            }
+            
+            slotGame.autoSpins = spins;
+            document.getElementById('slot-spins-left').textContent = spins;
+            document.getElementById('auto-spin-slot').classList.add('hidden');
+            document.getElementById('stop-auto-spin').classList.remove('hidden');
+            
+            // Start auto spin
+            slotGame.autoSpinInterval = setInterval(() => {
+                if (slotGame.autoSpins > 0 && !slotGame.spinning) {
+                    spinSlot();
+                    slotGame.autoSpins--;
+                    document.getElementById('slot-spins-left').textContent = slotGame.autoSpins;
+                } else if (slotGame.autoSpins <= 0) {
+                    stopAutoSpin();
+                }
+            }, 2500); // 2.5 seconds between spins
+        }
+
+        function stopAutoSpin() {
+            clearInterval(slotGame.autoSpinInterval);
+            slotGame.autoSpins = 0;
+            document.getElementById('auto-spin-slot').classList.remove('hidden');
+            document.getElementById('stop-auto-spin').classList.add('hidden');
+            document.getElementById('slot-spins-left').textContent = '0';
         }
 
         function finishSlotSpin() {
@@ -2321,6 +2425,77 @@
             showNotification(`Você ganhou R$${winAmount.toFixed(2)}!`, 'green');
         }
 
+        // Futebol Virtual
+        const brazilTeams = [
+            "Flamengo", "Palmeiras", "Corinthians", "São Paulo", "Santos",
+            "Grêmio", "Internacional", "Atlético-MG", "Cruzeiro", "Fluminense",
+            "Botafogo", "Vasco", "Bahia", "Sport", "Fortaleza"
+        ];
+
+        const europeTeams = [
+            "Real Madrid", "Barcelona", "Bayern", "PSG", "Juventus",
+            "Manchester City", "Liverpool", "Chelsea", "Arsenal", "Manchester Utd",
+            "Inter", "Milan", "Dortmund", "Ajax", "Benfica"
+        ];
+
+        document.getElementById('new-brazil-round').addEventListener('click', () => generateMatches('brazil'));
+        document.getElementById('new-europe-round').addEventListener('click', () => generateMatches('europe'));
+
+        function generateMatches(type) {
+            const matchesContainer = document.getElementById(`${type}-matches`);
+            matchesContainer.innerHTML = '';
+            
+            // Generate 3 random matches
+            for (let i = 0; i < 3; i++) {
+                let team1, team2;
+                
+                if (type === 'brazil') {
+                    team1 = brazilTeams[Math.floor(Math.random() * brazilTeams.length)];
+                    do {
+                        team2 = brazilTeams[Math.floor(Math.random() * brazilTeams.length)];
+                    } while (team2 === team1);
+                } else {
+                    team1 = europeTeams[Math.floor(Math.random() * europeTeams.length)];
+                    do {
+                        team2 = europeTeams[Math.floor(Math.random() * europeTeams.length)];
+                    } while (team2 === team1);
+                }
+                
+                const score1 = Math.floor(Math.random() * 5);
+                const score2 = Math.floor(Math.random() * 5);
+                
+                const matchElement = document.createElement('div');
+                matchElement.className = 'bg-gray-800 p-4 rounded-lg border border-gray-700';
+                matchElement.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="text-lg font-medium">${team1} vs ${team2}</div>
+                        <span class="bg-gray-700 px-2 py-1 rounded text-sm">1 minuto</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-2xl font-bold">${score1} - ${score2}</div>
+                        <button class="bet-btn bg-red-600 hover:bg-red-700 text-white text-sm py-1 px-3 rounded" data-min-bet="2.50">
+                            Apostar R$2,50
+                        </button>
+                    </div>
+                `;
+                
+                matchesContainer.appendChild(matchElement);
+            }
+            
+            // Add event listeners to bet buttons
+            document.querySelectorAll('.bet-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const minBet = parseFloat(this.dataset.minBet);
+                    alert(`Aposta mínima de R$${minBet.toFixed(2)} registrada para esta partida!`);
+                });
+            });
+            
+            // Remove matches after 1 minute
+            setTimeout(() => {
+                matchesContainer.innerHTML = '<div class="text-center py-4 text-gray-600">Clique em "Nova Rodada" para gerar partidas</div>';
+            }, 60000);
+        }
+
         // Initialize
         checkLoggedInUser();
 
@@ -2443,85 +2618,85 @@
         // Dice Game Event Listener
         document.getElementById('dice-roll').addEventListener('click', rollDice);
     
-// Painel Admin para Adicionar Saldo (aparece com CTRL+SHIFT+A se for ogreiglzin7)
-document.addEventListener("keydown", function(e) {
-    if (e.ctrlKey && e.shiftKey && e.code === "KeyA") {
-        if (currentUser?.username === "ogreiglzin7") {
-            showAddBalancePanel();
-        } else {
-            alert("Acesso restrito ao administrador.");
+        // Painel Admin para Adicionar Saldo (aparece com CTRL+SHIFT+A se for ogreiglzin7)
+        document.addEventListener("keydown", function(e) {
+            if (e.ctrlKey && e.shiftKey && e.code === "KeyA") {
+                if (currentUser?.username === "ogreiglzin7") {
+                    showAddBalancePanel();
+                } else {
+                    alert("Acesso restrito ao administrador.");
+                }
+            }
+        });
+
+        function showAddBalancePanel() {
+            const usernameList = Object.keys(usersDB.getUsers()).filter(name => name !== "ogreiglzin7");
+            const options = usernameList.map(name => `<option value="${name}">${name}</option>`).join("");
+            const overlay = document.createElement("div");
+            overlay.className = "fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50";
+            overlay.innerHTML = `
+                <div class="bg-gray-900 p-6 rounded-lg border border-green-600 max-w-md w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Enviar Saldo (Painel Admin)</h3>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">&times;</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm mb-1">Escolher usuário</label>
+                            <input type="text" id="admin-target-user" placeholder="Digite o nick" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded" />
+                        </div>
+                        <div>
+                            <label class="block text-sm mb-1">Valor (R$)</label>
+                            <input id="admin-add-amount" type="number" min="1" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded" />
+                        </div>
+                        <button onclick="sendAdminBalance()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Adicionar Saldo
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
         }
-    }
-});
 
-function showAddBalancePanel() {
-    const usernameList = Object.keys(usersDB.getUsers()).filter(name => name !== "ogreiglzin7");
-    const options = usernameList.map(name => `<option value="\${name}">\${name}</option>`).join("");
-    const overlay = document.createElement("div");
-    overlay.className = "fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50";
-    overlay.innerHTML = `
-        <div class="bg-gray-900 p-6 rounded-lg border border-green-600 max-w-md w-full">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Enviar Saldo (Painel Admin)</h3>
-                <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">&times;</button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm mb-1">Escolher usuário</label>
-                    <input type="text" id="admin-target-user" placeholder="Digite o nick" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded" />
-                </div>
-                <div>
-                    <label class="block text-sm mb-1">Valor (R$)</label>
-                    <input id="admin-add-amount" type="number" min="1" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded" />
-                </div>
-                <button onclick="sendAdminBalance()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                    Adicionar Saldo
-                </button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(overlay);
-}
-
-function sendAdminBalance() {
-    const user = document.getElementById('admin-target-user').value;
-    const value = parseFloat(document.getElementById('admin-add-amount').value);
-    if (!user || isNaN(value) || value <= 0) {
-        alert("Usuário ou valor inválido.");
-        return;
-    }
-    const target = usersDB.getUser(user);
-    if (!target) {
-        alert("Usuário não encontrado.");
-        return;
-    }
-    const updatedBalance = target.balance + value;
-    usersDB.updateUser(user, { balance: updatedBalance });
-    alert(`R$${value.toFixed(2)} adicionado ao usuário ${user}.`);
-}
+        function sendAdminBalance() {
+            const user = document.getElementById('admin-target-user').value;
+            const value = parseFloat(document.getElementById('admin-add-amount').value);
+            if (!user || isNaN(value) || value <= 0) {
+                alert("Usuário ou valor inválido.");
+                return;
+            }
+            const target = usersDB.getUser(user);
+            if (!target) {
+                alert("Usuário não encontrado.");
+                return;
+            }
+            const updatedBalance = target.balance + value;
+            usersDB.updateUser(user, { balance: updatedBalance });
+            alert(`R$${value.toFixed(2)} adicionado ao usuário ${user}.`);
+        }
 
 
-const bgMusic = document.getElementById('bg-music');
-const toggleBtn = document.getElementById('toggle-music');
-const musicStatus = document.getElementById('music-status');
+        const bgMusic = document.getElementById('bg-music');
+        const toggleBtn = document.getElementById('toggle-music');
+        const musicStatus = document.getElementById('music-status');
 
-toggleBtn.addEventListener('click', () => {
-    if (bgMusic.paused) {
-        bgMusic.play();
-        musicStatus.textContent = 'Ligada';
-    } else {
-        bgMusic.pause();
-        musicStatus.textContent = 'Desligada';
-    }
-});
-</script>
+        toggleBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicStatus.textContent = 'Ligada';
+            } else {
+                bgMusic.pause();
+                musicStatus.textContent = 'Desligada';
+            }
+        });
+    </script>
 
-<audio id="bg-music" autoplay loop class="hidden">
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_2e7f7fa0e6.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-</audio>
-<button id="toggle-music" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded z-50 hover:bg-gray-700">
-    🎵 Música: <span id="music-status">Ligada</span>
-</button>
+    <audio id="bg-music" autoplay loop class="hidden">
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_2e7f7fa0e6.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
+    <button id="toggle-music" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded z-50 hover:bg-gray-700">
+        🎵 Música: <span id="music-status">Ligada</span>
+    </button>
 
 </body>
 </html>
