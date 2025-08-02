@@ -1,0 +1,2527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReivBET - Casa de Apostas Online</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-notification {
+            animation: float 3s ease-in-out infinite;
+        }
+        .cell {
+            transition: all 0.3s ease;
+        }
+        .cell:hover {
+            transform: scale(1.05);
+        }
+        .logo-7 {
+            position: relative;
+        }
+        .logo-7::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            animation: bleed 2s infinite;
+        }
+        @keyframes bleed {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(0); }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .animate-pulse {
+            animation: pulse 0.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        #av-plane {
+            transition: transform 0.1s ease-out;
+            z-index: 10;
+            will-change: transform;
+        }
+        #av-trail {
+            transition: 
+                width 0.1s ease-out,
+                background-color 0.3s ease;
+            z-index: 5;
+        }
+        .welcome-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'));
+            background-size: cover;
+            background-position: center;
+        }
+        .slot-reel {
+            min-width: 64px;
+            min-height: 80px;
+        }
+        .card {
+            min-width: 60px;
+            min-height: 90px;
+        }
+        .roulette-wheel {
+            width: 250px;
+            height: 250px;
+        }
+        @media (max-width: 640px) {
+            .roulette-wheel {
+                width: 200px;
+                height: 200px;
+            }
+            .slot-reel {
+                min-width: 50px;
+                min-height: 70px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Login Screen -->
+    <div id="login-screen" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <div class="bg-gray-900 p-8 rounded-lg shadow-2xl border border-red-600 max-w-md w-full">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center">
+                    <span class="text-5xl font-bold text-red-600 logo-7">7</span>
+                    <span class="text-3xl font-bold ml-2">Reiv<span class="text-red-600">BET</span></span>
+                </div>
+                <span class="bg-yellow-500 text-black text-xs px-2 py-1 rounded"></span>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium mb-1">Usuário</label>
+                    <input type="text" id="username" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium mb-1">Senha</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600" required>
+                </div>
+                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Entrar
+                </button>
+                <div class="text-center text-sm">
+                    <span class="text-gray-400">Não tem uma conta?</span>
+                    <button type="button" id="show-register" class="text-red-500 hover:text-red-400 ml-1">Cadastre-se</button>
+                </div>
+            </form>
+            
+            <!-- Register Form (hidden initially) -->
+            <form id="register-form" class="space-y-4 hidden">
+                <div>
+                    <label for="reg-username" class="block text-sm font-medium mb-1">Usuário</label>
+                    <input type="text" id="reg-username" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600" required>
+                </div>
+                <div>
+                    <label for="reg-password" class="block text-sm font-medium mb-1">Senha</label>
+                    <input type="password" id="reg-password" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600" required>
+                </div>
+                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Cadastrar
+                </button>
+                <div class="text-center text-sm">
+                    <span class="text-gray-400">Já tem uma conta?</span>
+                    <button type="button" id="show-login" class="text-red-500 hover:text-red-400 ml-1">Faça login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App (hidden initially) -->
+    <div id="main-app" class="hidden">
+        <!-- Header -->
+        <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="text-4xl font-bold text-red-600 logo-7">7</span>
+                    <span class="text-2xl font-bold ml-2">Reiv<span class="text-red-600">BET</span></span>
+                    <span class="bg-yellow-500 text-black text-xs px-2 py-1 rounded ml-3"></span>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="bg-gray-800 px-4 py-2 rounded-lg flex items-center">
+                        <span class="text-gray-400 mr-2">Saldo:</span>
+                        <span id="user-balance" class="font-bold text-green-500">R$ 0,00</span>
+                    </div>
+                    <button id="deposit-btn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition duration-300">
+                        Depositar
+                    </button>
+                    <button id="withdraw-btn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition duration-300">
+                        Saque
+                    </button>
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full cursor-pointer" id="user-menu-btn">
+                        <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700">
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Perfil</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Histórico</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Configurações</a>
+                            <div class="border-t border-gray-700"></div>
+                            <a href="#" id="logout-btn" class="block px-4 py-2 text-sm hover:bg-gray-700 text-red-500">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-gray-900 border-b border-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="flex space-x-1 overflow-x-auto">
+                    <button id="home-tab" class="px-4 py-3 text-sm font-medium bg-gray-800 text-red-500">Início</button>
+                    <button id="casino-tab" class="px-4 py-3 text-sm font-medium hover:bg-gray-800">Cassino</button>
+                    <button id="games-tab" class="px-4 py-3 text-sm font-medium hover:bg-gray-800">Jogos</button>
+                    <button class="px-4 py-3 text-sm font-medium hover:bg-gray-800">Esportes</button>
+                    <button class="px-4 py-3 text-sm font-medium hover:bg-gray-800">Promoções</button>
+                    <button class="px-4 py-3 text-sm font-medium hover:bg-gray-800">Suporte</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-6">
+            <!-- Dynamic Notifications -->
+            <div id="notifications-container" class="fixed top-20 right-4 space-y-2 z-30"></div>
+
+            <!-- Welcome Section (default view) -->
+            <div id="welcome-section" class="welcome-bg rounded-lg p-8 md:p-12 mb-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Bem-vindo, <span id="welcome-username" class="text-red-500">Usuário</span>!</h1>
+                    <p class="text-xl mb-6">Prepare-se para a melhor experiência de apostas online. Seu saldo atual: <span id="welcome-balance" class="font-bold text-green-500">R$ 0,00</span></p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-gray-900 bg-opacity-70 p-4 rounded-lg border border-gray-700">
+                            <div class="text-red-500 text-3xl mb-2"><i class="fas fa-gamepad"></i></div>
+                            <h3 class="font-bold mb-2">Jogos Exclusivos</h3>
+                            <p class="text-sm text-gray-300">Diversão e emoção em nossos jogos premium</p>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-70 p-4 rounded-lg border border-gray-700">
+                            <div class="text-red-500 text-3xl mb-2"><i class="fas fa-gem"></i></div>
+                            <h3 class="font-bold mb-2">Bônus Diários</h3>
+                            <p class="text-sm text-gray-300">Ganhe recompensas todos os dias</p>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-70 p-4 rounded-lg border border-gray-700">
+                            <div class="text-red-500 text-3xl mb-2"><i class="fas fa-shield-alt"></i></div>
+                            <h3 class="font-bold mb-2">Segurança Total</h3>
+                            <p class="text-sm text-gray-300">Seus dados e transações protegidos</p>
+                        </div>
+                    </div>
+                    
+                    <button id="start-playing-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-play mr-2"></i> Começar a Jogar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Casino Section (hidden initially) -->
+            <div id="casino-section" class="hidden">
+                <!-- Slot Machine -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-coins mr-2 text-red-500"></i> Caça-Níqueis ReivBET
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Game Controls -->
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="slot-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="slot-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                
+                                <div class="pt-2">
+                                    <button id="spin-slot" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                        Girar Rodas (1 CRÉDITO)
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Status da Partida</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Aposta:</span>
+                                        <span id="slot-current-bet" class="font-medium">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Prêmio:</span>
+                                        <span id="slot-win-amount" class="font-medium text-green-500">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Último Resultado:</span>
+                                        <span id="slot-last-result" class="font-medium">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slot Machine -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-bold">Caça-Níqueis</h3>
+                                    <div id="slot-status" class="text-sm px-3 py-1 bg-gray-800 rounded-full">
+                                        Pronto para jogar
+                                    </div>
+                                </div>
+                                
+                                <div class="slot-machine bg-gray-800 p-4 rounded-lg">
+                                    <div class="slots flex justify-center gap-4 mb-6">
+                                        <div class="slot-reel bg-gray-700 rounded flex items-center justify-center text-4xl">🍒</div>
+                                        <div class="slot-reel bg-gray-700 rounded flex items-center justify-center text-4xl">7️⃣</div>
+                                        <div class="slot-reel bg-gray-700 rounded flex items-center justify-center text-4xl">💰</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-4 border-t border-gray-800">
+                                    <h3 class="text-lg font-bold mb-2">Como jogar</h3>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
+                                        <li>Escolha o valor da aposta</li>
+                                        <li>Clique em "Girar Rodas" para jogar</li>
+                                        <li>3 símbolos iguais = vitória</li>
+                                        <li>🍒🍒🍒 = 2x | 7️⃣7️⃣7️⃣ = 5x | 💰💰💰 = 10x</li>
+                                        <li>Qualquer combinação de 7️⃣ e 💰 = 3x</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roleta -->
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-circle-notch mr-2 text-red-500"></i> Roleta ReivBET
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="roulette-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="roulette-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium mb-1">Apostar em:</label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button data-bet-type="red" class="roulette-bet-btn bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
+                                            Vermelho (2x)
+                                        </button>
+                                        <button data-bet-type="black" class="roulette-bet-btn bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded">
+                                            Preto (2x)
+                                        </button>
+                                        <button data-bet-type="green" class="roulette-bet-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
+                                            0 Verde (14x)
+                                        </button>
+                                        <button data-bet-type="even" class="roulette-bet-btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                                            Par (2x)
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Status</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Aposta:</span>
+                                        <span id="roulette-current-bet" class="font-medium">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Tipo:</span>
+                                        <span id="roulette-bet-type" class="font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Resultado:</span>
+                                        <span id="roulette-result" class="font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold">
+                                        <span>Prêmio:</span>
+                                        <span id="roulette-win-amount" class="text-green-500">R$ 0,00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full flex flex-col items-center justify-center">
+                                <div class="roulette-wheel relative mx-auto mb-6">
+                                    <div class="wheel bg-gray-800 rounded-full flex items-center justify-center">
+                                        <div class="ball absolute w-6 h-6 bg-white rounded-full"></div>
+                                    </div>
+                                </div>
+                                <div id="roulette-status" class="text-lg font-bold mb-2">Faça sua aposta</div>
+                                <div class="flex gap-4">
+                                    <div class="bg-red-600 w-8 h-8 rounded-full flex items-center justify-center">V</div>
+                                    <div class="bg-black w-8 h-8 rounded-full flex items-center justify-center text-white">P</div>
+                                    <div class="bg-green-600 w-8 h-8 rounded-full flex items-center justify-center">0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blackjack -->
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-club mr-2 text-red-500"></i> Blackjack ReivBET
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="blackjack-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="blackjack-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                
+                                <button id="blackjack-start" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                    Iniciar Jogo
+                                </button>
+                            </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Status</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Aposta:</span>
+                                        <span id="blackjack-current-bet" class="font-medium">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Dealer:</span>
+                                        <span id="blackjack-dealer-score" class="font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Jogador:</span>
+                                        <span id="blackjack-player-score" class="font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold">
+                                        <span>Resultado:</span>
+                                        <span id="blackjack-result" class="text-green-500">-</span>
+                                    </div>
+                                </div>
+                                
+                                <div id="blackjack-actions" class="mt-4 grid grid-cols-2 gap-2 hidden">
+                                    <button id="blackjack-hit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
+                                        Pedir Carta
+                                    </button>
+                                    <button id="blackjack-stand" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
+                                        Parar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-bold">Mesa de Blackjack</h3>
+                                    <div id="blackjack-status" class="text-sm px-3 py-1 bg-gray-800 rounded-full">
+                                        Aguardando aposta
+                                    </div>
+                                </div>
+                                
+                                <div class="blackjack-table space-y-8">
+                                    <div class="dealer-cards">
+                                        <h4 class="text-md font-medium mb-2">Dealer: <span id="dealer-count">?</span></h4>
+                                        <div class="flex gap-2">
+                                            <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
+                                            <div id="dealer-cards-container" class="flex gap-2"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="player-cards">
+                                        <h4 class="text-md font-medium mb-2">Você: <span id="player-count">0</span></h4>
+                                        <div id="player-cards-container" class="flex gap-2"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-4 border-t border-gray-800">
+                                    <h3 class="text-lg font-bold mb-2">Como jogar</h3>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
+                                        <li>Obtenha uma mão mais próxima de 21 que o dealer sem estourar</li>
+                                        <li>Cartas valem seu valor numérico, figuras valem 10, Ás vale 1 ou 11</li>
+                                        <li>Blackjack (Ás + 10) paga 3:2</li>
+                                        <li>Vitória normal paga 1:1</li>
+                                        <li>Se o dealer estourar, todos os jogadores que não estouraram ganham</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Poker -->
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-spade mr-2 text-red-500"></i> Video Poker ReivBET
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="poker-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="poker-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                
+                                <button id="poker-deal" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                    Distribuir Cartas
+                                </button>
+                                
+                                <button id="poker-draw" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
+                                    Trocar Cartas
+                                </button>
+                            </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Status</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Aposta:</span>
+                                        <span id="poker-current-bet" class="font-medium">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Mão:</span>
+                                        <span id="poker-hand" class="font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold">
+                                        <span>Prêmio:</span>
+                                        <span id="poker-win-amount" class="text-green-500">R$ 0,00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Pagamentos</h3>
+                                <ul class="text-sm text-gray-300 space-y-1">
+                                    <li>Royal Flush - 250x</li>
+                                    <li>Straight Flush - 50x</li>
+                                    <li>Quadra - 25x</li>
+                                    <li>Full House - 9x</li>
+                                    <li>Flush - 6x</li>
+                                    <li>Sequência - 4x</li>
+                                    <li>Trinca - 3x</li>
+                                    <li>Dois Pares - 2x</li>
+                                    <li>Par de Valetes+ - 1x</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-bold">Video Poker</h3>
+                                    <div id="poker-status" class="text-sm px-3 py-1 bg-gray-800 rounded-full">
+                                        Faça sua aposta
+                                    </div>
+                                </div>
+                                
+                                <div class="poker-hand flex justify-center gap-2 mb-8">
+                                    <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
+                                    <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
+                                    <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
+                                    <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
+                                    <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
+                                </div>
+                                
+                                <div class="mt-6 pt-4 border-t border-gray-800">
+                                    <h3 class="text-lg font-bold mb-2">Como jogar</h3>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
+                                        <li>Faça sua aposta e clique em "Distribuir Cartas"</li>
+                                        <li>Selecione as cartas que deseja descartar</li>
+                                        <li>Clique em "Trocar Cartas" para receber novas cartas</li>
+                                        <li>O prêmio é pago de acordo com a força da sua mão final</li>
+                                        <li>O jogo usa um baralho padrão de 52 cartas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Games Section (hidden initially) -->
+            <div id="games-section" class="hidden">
+                <!-- Seu conteúdo atual de jogos aqui -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-gamepad mr-2 text-red-500"></i> Campo Minado
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Game Controls -->
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Configuração da Partida</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                
+                                <div>
+                                    <label for="mines-count" class="block text-sm font-medium mb-1">Número de minas (1-10)</label>
+                                    <select id="mines-count" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                        <option value="1">1 mina (1.10x)</option>
+                                        <option value="2">2 minas (1.25x)</option>
+                                        <option value="3" selected>3 minas (1.40x)</option>
+                                        <option value="4">4 minas (1.60x)</option>
+                                        <option value="5">5 minas (2.00x)</option>
+                                        <option value="6">6 minas (2.50x)</option>
+                                        <option value="7">7 minas (3.00x)</option>
+                                        <option value="8">8 minas (3.50x)</option>
+                                        <option value="9">9 minas (3.75x)</option>
+                                        <option value="10">10 minas (4.00x)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="pt-2">
+                                    <button id="start-game" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                        Iniciar Jogo
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Status da Partida</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Aposta:</span>
+                                        <span id="current-bet" class="font-medium">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Minas:</span>
+                                        <span id="current-mines" class="font-medium">0</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Cliques seguros:</span>
+                                        <span id="safe-clicks" class="font-medium">0</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Multiplicador:</span>
+                                        <span id="current-multiplier" class="font-medium text-green-500">1.00x</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold">
+                                        <span>Ganho potencial:</span>
+                                        <span id="potential-win" class="text-green-500">R$ 0,00</span>
+                                    </div>
+                                </div>
+                                
+                                <button id="cash-out" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
+                                    Retirar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Game Board -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-bold">Tabuleiro</h3>
+                                    <div id="game-status" class="text-sm px-3 py-1 bg-gray-800 rounded-full">
+                                        Aguardando início...
+                                    </div>
+                                </div>
+                                
+                                <div id="game-board" class="grid grid-cols-5 gap-2">
+                                    <!-- Cells will be generated here -->
+                                    <div class="text-center py-4 text-gray-600">
+                                        Configure a partida e clique em "Iniciar Jogo"
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-4 border-t border-gray-800">
+                                    <h3 class="text-lg font-bold mb-2">Como jogar</h3>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
+                                        <li>Escolha o valor da aposta e o número de minas</li>
+                                        <li>Clique em "Iniciar Jogo" para começar</li>
+                                        <li>Clique nos blocos para revelá-los</li>
+                                        <li>Cada bloco seguro aumenta seu multiplicador</li>
+                                        <li>Se encontrar uma mina, você perde a aposta</li>
+                                        <li>Clique em "Retirar" a qualquer momento para garantir seus ganhos</li>
+                                        <li>Quanto mais minas, maior o multiplicador inicial</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aviador Reiv -->
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-plane mr-2 text-red-500"></i> Aviador Reiv
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="av-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="av-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                <button id="av-start-game" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                    Iniciar Voo
+                                </button>
+                            </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-gray-800">
+                                <h3 class="text-lg font-bold mb-2">Status</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Aposta:</span>
+                                        <span id="av-current-bet" class="font-medium">R$ 0,00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Multiplicador:</span>
+                                        <span id="av-multiplier" class="font-medium text-green-500">1.00x</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold">
+                                        <span>Ganho:</span>
+                                        <span id="av-potential-win" class="text-green-500">R$ 0,00</span>
+                                    </div>
+                                </div>
+                                
+                                <button id="av-cash-out" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
+                                    Retirar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full flex flex-col items-center justify-center">
+                                <div id="av-game-area" class="relative w-full h-64 bg-gradient-to-b from-gray-900 to-black rounded-lg overflow-hidden">
+                                    <div id="av-plane" class="absolute left-4 top-4 text-3xl transition-all duration-1000">
+                                        ✈️
+                                    </div>
+                                    <div id="av-trail" class="absolute left-4 top-8 w-0 h-1 bg-red-600 transition-all duration-1000"></div>
+                                </div>
+                                <div class="mt-4 text-center">
+                                    <div id="av-status" class="text-lg font-bold">Aguardando início...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados ReivBET -->
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-dice mr-2 text-red-500"></i> Dados ReivBET
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                            <h3 class="text-lg font-bold mb-4">Apostar no Dado</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="dice-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
+                                    <input type="number" id="dice-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                </div>
+                                <div>
+                                    <label for="dice-number" class="block text-sm font-medium mb-1">Escolha um número (1-6)</label>
+                                    <select id="dice-number" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+                                <button id="dice-roll" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                                    Girar Dado
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full flex flex-col items-center justify-center">
+                                <div class="text-6xl mb-4" id="dice-display">
+                                    <i class="fas fa-dice-d6 text-gray-600"></i>
+                                </div>
+                                <div id="dice-result" class="text-xl font-bold mb-2"></div>
+                                <div id="dice-status" class="text-sm text-gray-400">Configure sua aposta e clique em "Girar Dado"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deposit Modal -->
+            <div id="deposit-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+                <div class="bg-gray-900 p-6 rounded-lg border border-red-600 max-w-md w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Depósito via PIX</h3>
+                        <button id="close-deposit-modal" class="text-gray-400 hover:text-white">&times;</button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label for="deposit-amount" class="block text-sm font-medium mb-1">Valor do depósito (R$10 - R$5.000)</label>
+                            <input type="number" id="deposit-amount" min="10" max="5000" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                            <p class="text-xs text-gray-400 mt-1">Limite mínimo: R$10 | Limite máximo: R$5.000</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2">Chave PIX:</h4>
+                            <div class="flex items-center justify-between bg-black p-3 rounded">
+                                <span class="font-mono">reivcontato@gmail.com</span>
+                                <button id="copy-pix" class="text-red-500 hover:text-red-400">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2">Envie o valor para esta chave e seu saldo será creditado automaticamente.</p>
+                        </div>
+                        
+                        <button id="confirm-deposit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            Confirmar Depósito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Withdraw Modal -->
+            <div id="withdraw-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+                <div class="bg-gray-900 p-6 rounded-lg border border-red-600 max-w-md w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Saque via PIX</h3>
+                        <button id="close-withdraw-modal" class="text-gray-400 hover:text-white">&times;</button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label for="withdraw-amount" class="block text-sm font-medium mb-1">Valor do saque (R$50 - R$10.000)</label>
+                            <input type="number" id="withdraw-amount" min="50" max="10000" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                            <p class="text-xs text-gray-400 mt-1">Limite mínimo: R$50 | Limite máximo: R$10.000</p>
+                        </div>
+                        
+                        <div>
+                            <label for="withdraw-pix-key" class="block text-sm font-medium mb-1">Chave PIX (e-mail, telefone ou CPF)</label>
+                            <input type="text" id="withdraw-pix-key" placeholder="exemplo@email.com" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
+                        </div>
+                        
+                        <button id="confirm-withdraw" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            Solicitar Saque
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Withdraw Panel -->
+            <div id="admin-withdraw-panel" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+                <div class="bg-gray-900 p-6 rounded-lg border border-red-600 max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Painel de Admin - Saques Pendentes</h3>
+                        <button id="close-admin-panel" class="text-gray-400 hover:text-white">&times;</button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-gray-700">
+                                    <th class="text-left py-2">Usuário</th>
+                                    <th class="text-left py-2">Valor</th>
+                                    <th class="text-left py-2">Chave PIX</th>
+                                    <th class="text-left py-2">Data</th>
+                                    <th class="text-left py-2">Status</th>
+                                    <th class="text-left py-2">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="withdraw-requests">
+                                <!-- Requests will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 border-t border-gray-800 mt-12 py-8">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 flex items-center">
+                            <span class="text-2xl font-bold text-red-600 logo-7 mr-2">7</span>
+                            Reiv<span class="text-red-600">BET</span>
+                        </h3>
+                        <p class="text-sm text-gray-400">A casa de apostas mais arriscada e recompensadora do Brasil.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Links Rápidos</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-red-500">Início</a></li>
+                            <li><a href="#" class="hover:text-red-500">Cassino</a></li>
+                            <li><a href="#" class="hover:text-red-500">Esportes</a></li>
+                            <li><a href="#" class="hover:text-red-500">Promoções</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Suporte</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-red-500">FAQ</a></li>
+                            <li><a href="#" class="hover:text-red-500">Chat ao Vivo</a></li>
+                            <li><a href="#" class="hover:text-red-500">E-mail</a></li>
+                            <li><a href="#" class="hover:text-red-500">Termos de Uso</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Segurança</h4>
+                        <div class="flex space-x-4 mb-4">
+                            <div class="w-12 h-8 bg-gray-800 rounded flex items-center justify-center">
+                                <i class="fas fa-lock text-green-500"></i>
+                            </div>
+                            <div class="w-12 h-8 bg-gray-800 rounded flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-blue-500"></i>
+                            </div>
+                            <div class="w-12 h-8 bg-gray-800 rounded flex items-center justify-center">
+                                <i class="fas fa-user-secret text-purple-500"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Jogue com responsabilidade. Apenas para maiores de 18 anos.</p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-6 text-sm text-gray-500 text-center">
+                    <p>© 2023 ReivBET. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Database simulation using localStorage
+        const usersDB = {
+            getUsers: () => {
+                const users = localStorage.getItem('reivbet_users');
+                return users ? JSON.parse(users) : {};
+            },
+            saveUsers: (users) => {
+                localStorage.setItem('reivbet_users', JSON.stringify(users));
+            },
+            getUser: (username) => {
+                const users = usersDB.getUsers();
+                return users[username] || null;
+            },
+            createUser: (username, password) => {
+                const users = usersDB.getUsers();
+                if (users[username]) {
+                    return { error: 'Usuário já existe' };
+                }
+                
+                users[username] = {
+                    username,
+                    password,
+                    balance: 0, // Todos começam com saldo zerado
+                    createdAt: new Date().toISOString()
+                };
+                
+                usersDB.saveUsers(users);
+                return { user: users[username] };
+            },
+            updateUser: (username, data) => {
+                const users = usersDB.getUsers();
+                if (!users[username]) {
+                    return { error: 'Usuário não encontrado' };
+                }
+                
+                users[username] = { ...users[username], ...data };
+                usersDB.saveUsers(users);
+                return { user: users[username] };
+            }
+        };
+
+        // Current user
+        let currentUser = null;
+
+        // DOM Elements
+        const loginScreen = document.getElementById('login-screen');
+        const mainApp = document.getElementById('main-app');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const regUsernameInput = document.getElementById('reg-username');
+        const regPasswordInput = document.getElementById('reg-password');
+        const userBalance = document.getElementById('user-balance');
+        const logoutBtn = document.getElementById('logout-btn');
+        const welcomeUsername = document.getElementById('welcome-username');
+        const welcomeBalance = document.getElementById('welcome-balance');
+        const homeTab = document.getElementById('home-tab');
+        const casinoTab = document.getElementById('casino-tab');
+        const gamesTab = document.getElementById('games-tab');
+        const welcomeSection = document.getElementById('welcome-section');
+        const casinoSection = document.getElementById('casino-section');
+        const gamesSection = document.getElementById('games-section');
+        const startPlayingBtn = document.getElementById('start-playing-btn');
+
+        // Event Listeners
+        showRegister.addEventListener('click', () => {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+        });
+
+        showLogin.addEventListener('click', () => {
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            if (!username || !password) {
+                alert('Por favor, preencha todos os campos');
+                return;
+            }
+            
+            const user = usersDB.getUser(username);
+            
+            if (!user || user.password !== password) {
+                alert('Usuário ou senha incorretos');
+                return;
+            }
+            
+            // Login successful
+            currentUser = user;
+            localStorage.setItem('reivbet_current_user', JSON.stringify(user));
+            
+            // Hide login screen and show main app
+            loginScreen.classList.add('hidden');
+            mainApp.classList.remove('hidden');
+            
+            // Update UI with user data
+            updateUserData();
+            startRandomNotifications();
+            
+            // Show welcome message
+            welcomeUsername.textContent = currentUser.username;
+            welcomeBalance.textContent = `R$ ${currentUser.balance.toFixed(2)}`;
+            
+            // Set home tab as active by default
+            homeTab.classList.add('bg-gray-800', 'text-red-500');
+            gamesTab.classList.remove('bg-gray-800', 'text-red-500');
+            casinoTab.classList.remove('bg-gray-800', 'text-red-500');
+            welcomeSection.classList.remove('hidden');
+            gamesSection.classList.add('hidden');
+            casinoSection.classList.add('hidden');
+        });
+
+        // Navigation between sections
+        homeTab.addEventListener('click', () => {
+            homeTab.classList.add('bg-gray-800', 'text-red-500');
+            gamesTab.classList.remove('bg-gray-800', 'text-red-500');
+            casinoTab.classList.remove('bg-gray-800', 'text-red-500');
+            welcomeSection.classList.remove('hidden');
+            gamesSection.classList.add('hidden');
+            casinoSection.classList.add('hidden');
+        });
+
+        casinoTab.addEventListener('click', () => {
+            casinoTab.classList.add('bg-gray-800', 'text-red-500');
+            homeTab.classList.remove('bg-gray-800', 'text-red-500');
+            gamesTab.classList.remove('bg-gray-800', 'text-red-500');
+            casinoSection.classList.remove('hidden');
+            welcomeSection.classList.add('hidden');
+            gamesSection.classList.add('hidden');
+        });
+
+        gamesTab.addEventListener('click', () => {
+            gamesTab.classList.add('bg-gray-800', 'text-red-500');
+            homeTab.classList.remove('bg-gray-800', 'text-red-500');
+            casinoTab.classList.remove('bg-gray-800', 'text-red-500');
+            gamesSection.classList.remove('hidden');
+            welcomeSection.classList.add('hidden');
+            casinoSection.classList.add('hidden');
+        });
+
+        startPlayingBtn.addEventListener('click', () => {
+            gamesTab.classList.add('bg-gray-800', 'text-red-500');
+            homeTab.classList.remove('bg-gray-800', 'text-red-500');
+            casinoTab.classList.remove('bg-gray-800', 'text-red-500');
+            gamesSection.classList.remove('hidden');
+            welcomeSection.classList.add('hidden');
+            casinoSection.classList.add('hidden');
+        });
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = regUsernameInput.value.trim();
+            const password = regPasswordInput.value.trim();
+            
+            if (!username || !password) {
+                alert('Por favor, preencha todos os campos');
+                return;
+            }
+            
+            if (password.length < 4) {
+                alert('A senha deve ter pelo menos 4 caracteres');
+                return;
+            }
+            
+            const { user, error } = usersDB.createUser(username, password);
+            
+            if (error) {
+                alert(error);
+                return;
+            }
+            
+            // Registration successful, auto-login
+            currentUser = user;
+            localStorage.setItem('reivbet_current_user', JSON.stringify(user));
+            
+            // Hide login screen and show main app
+            loginScreen.classList.add('hidden');
+            mainApp.classList.remove('hidden');
+            
+            // Update UI with user data
+            updateUserData();
+            startRandomNotifications();
+            
+            // Show welcome message
+            welcomeUsername.textContent = currentUser.username;
+            welcomeBalance.textContent = `R$ ${currentUser.balance.toFixed(2)}`;
+            
+            // Set home tab as active by default
+            homeTab.classList.add('bg-gray-800', 'text-red-500');
+            gamesTab.classList.remove('bg-gray-800', 'text-red-500');
+            casinoTab.classList.remove('bg-gray-800', 'text-red-500');
+            welcomeSection.classList.remove('hidden');
+            gamesSection.classList.add('hidden');
+            casinoSection.classList.add('hidden');
+            
+            alert('Cadastro realizado com sucesso! Bem-vindo ao ReivBET');
+        });
+
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            logout();
+        });
+
+        // Check if user is already logged in
+        function checkLoggedInUser() {
+            const userData = localStorage.getItem('reivbet_current_user');
+            if (userData) {
+                currentUser = JSON.parse(userData);
+                loginScreen.classList.add('hidden');
+                mainApp.classList.remove('hidden');
+                updateUserData();
+                startRandomNotifications();
+                
+                // Show welcome message
+                welcomeUsername.textContent = currentUser.username;
+                welcomeBalance.textContent = `R$ ${currentUser.balance.toFixed(2)}`;
+                
+                // Set home tab as active by default
+                homeTab.classList.add('bg-gray-800', 'text-red-500');
+                gamesTab.classList.remove('bg-gray-800', 'text-red-500');
+                casinoTab.classList.remove('bg-gray-800', 'text-red-500');
+                welcomeSection.classList.remove('hidden');
+                gamesSection.classList.add('hidden');
+                casinoSection.classList.add('hidden');
+            }
+        }
+
+        // Update user data in the UI
+        function updateUserData() {
+            if (!currentUser) return;
+            
+            // Update balance display
+            userBalance.textContent = `R$ ${currentUser.balance.toFixed(2)}`;
+            welcomeBalance.textContent = `R$ ${currentUser.balance.toFixed(2)}`;
+            
+            // You can update other user-related UI elements here
+        }
+
+        // Update user balance (call this whenever balance changes)
+        function updateUserBalance(newBalance) {
+            if (!currentUser) return;
+            
+            currentUser.balance = newBalance;
+            localStorage.setItem('reivbet_current_user', JSON.stringify(currentUser));
+            usersDB.updateUser(currentUser.username, { balance: newBalance });
+            updateUserData();
+        }
+
+        // Logout function
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('reivbet_current_user');
+            mainApp.classList.add('hidden');
+            loginScreen.classList.remove('hidden');
+            
+            // Reset forms
+            loginForm.reset();
+            registerForm.reset();
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        }
+
+        // Sample win messages
+        const winMessages = [
+            "Usuário 78*****654 ganhou R$50.000  🔥",
+            "Usuário 82*****121 faturou R$12.700 🔥",
+            "Usuário 23*****891 acertou R$8.320  🔥",
+            "Usuário 45*****112 retirou R$25.150  🔥",
+            "Usuário 67*****334 multiplicou R$3.200 em 5x  🔥",
+            "Usuário 91*****556 ganhou R$15.750  🔥",
+            "Usuário 12*****778 faturou R$7.890  🔥"
+        ];
+
+        function startRandomNotifications() {
+            // Show first notification after 5 seconds
+            setTimeout(() => {
+                showRandomWinNotification();
+                
+                // Then show a new one every 10-20 seconds
+                setInterval(showRandomWinNotification, Math.random() * 10000 + 10000);
+            }, 5000);
+        }
+
+        function showRandomWinNotification() {
+            const randomMessage = winMessages[Math.floor(Math.random() * winMessages.length)];
+            showNotification(randomMessage, 'yellow');
+        }
+
+        function showNotification(message, color = 'red') {
+            const notification = document.createElement('div');
+            notification.className = `floating-notification bg-gray-900 border-l-4 border-${color}-500 px-4 py-2 rounded shadow-lg text-sm flex items-center`;
+            notification.innerHTML = `
+                <span class="mr-2">${message}</span>
+            `;
+            
+            const notificationsContainer = document.getElementById('notifications-container');
+            notificationsContainer.appendChild(notification);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 1s';
+                setTimeout(() => notification.remove(), 1000);
+            }, 5000);
+        }
+
+        // Aviator game configuration
+        const aviatorConfig = {
+            minBet: 1,
+            maxMultiplier: 10,
+            baseCrashPoint: 1.2,
+            volatility: 3
+        };
+
+        let aviatorGame = {
+            active: false,
+            betAmount: 0,
+            multiplier: 1.00,
+            animationFrame: null,
+            crashPoint: 0,
+            startTime: 0,
+            duration: 0
+        };
+
+        // Aviator Game Elements
+        const avStartGameBtn = document.getElementById('av-start-game');
+        const avCashOutBtn = document.getElementById('av-cash-out');
+        const avBetAmountInput = document.getElementById('av-bet-amount');
+        const avMultiplierDisplay = document.getElementById('av-multiplier');
+        const avPotentialWinDisplay = document.getElementById('av-potential-win');
+        const avStatusDisplay = document.getElementById('av-status');
+        const avPlane = document.getElementById('av-plane');
+        const avTrail = document.getElementById('av-trail');
+
+        // Aviator Game Event Listeners
+        avStartGameBtn.addEventListener('click', startAviator);
+        avCashOutBtn.addEventListener('click', cashOutAviator);
+
+        // Aviator Game Functions
+        function startAviator() {
+            const bet = parseFloat(avBetAmountInput.value);
+            
+            // Validações
+            if (isNaN(bet) || bet < aviatorConfig.minBet) {
+                showNotification(`O valor mínimo para aposta é R$${aviatorConfig.minBet.toFixed(2)}`, 'red');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                showNotification('Saldo insuficiente para esta aposta', 'red');
+                return;
+            }
+            
+            // Deduz o valor da aposta
+            updateUserBalance(currentUser.balance - bet);
+            
+            // Configura o jogo
+            aviatorGame = {
+                active: true,
+                betAmount: bet,
+                multiplier: 1.00,
+                crashPoint: calculateCrashPoint(),
+                animationFrame: null,
+                startTime: Date.now(),
+                duration: 0
+            };
+            
+            // Atualiza UI
+            avStatusDisplay.textContent = 'O avião está decolando...';
+            avStartGameBtn.classList.add('hidden');
+            avCashOutBtn.classList.remove('hidden');
+            avMultiplierDisplay.textContent = '1.00x';
+            avPotentialWinDisplay.textContent = `R$ ${bet.toFixed(2)}`;
+            
+            // Limpa animação anterior
+            avPlane.style.transform = 'translateX(0) translateY(0) rotate(0deg)';
+            avTrail.style.width = '0';
+            avTrail.style.backgroundColor = 'red';
+            
+            // Inicia o loop do jogo
+            aviatorGame.startTime = Date.now();
+            aviatorGame.animationFrame = requestAnimationFrame(updateAviatorGame);
+        }
+
+        function calculateCrashPoint() {
+            // Fórmula para gerar um ponto de crash aleatório (mais justo)
+            const e = Math.pow(2, aviatorConfig.volatility);
+            const r = Math.random() * (aviatorConfig.volatility * 0.5) + 0.5;
+            return (Math.pow(e, r) - 1) / (e - 1) * (aviatorConfig.maxMultiplier - aviatorConfig.baseCrashPoint) + aviatorConfig.baseCrashPoint;
+        }
+
+        function updateAviatorGame() {
+            if (!aviatorGame.active) return;
+            
+            const currentTime = Date.now();
+            aviatorGame.duration = (currentTime - aviatorGame.startTime) / 1000; // em segundos
+            
+            // Calcula o multiplicador com curva de crescimento
+            aviatorGame.multiplier = 1 + (aviatorGame.duration * 0.5) + Math.pow(aviatorGame.duration, 2) * 0.1;
+            
+            // Atualiza display
+            avMultiplierDisplay.textContent = `${Math.min(aviatorGame.multiplier, 999).toFixed(2)}x`;
+            avPotentialWinDisplay.textContent = `R$ ${(aviatorGame.betAmount * aviatorGame.multiplier).toFixed(2)}`;
+            
+            // Animação do avião (suavizada)
+            const progress = Math.min(aviatorGame.multiplier / aviatorGame.crashPoint, 1);
+            const xPos = progress * 200;
+            const yPos = -Math.sin(progress * Math.PI) * 50;
+            
+            avPlane.style.transform = `translateX(${xPos}px) translateY(${yPos}px) rotate(${progress * 10}deg)`;
+            avTrail.style.width = `${xPos}px`;
+            avTrail.style.height = '2px';
+            avTrail.style.transform = `translateY(${yPos + 25}px)`;
+            
+            // Verifica se o avião caiu
+            if (aviatorGame.multiplier >= aviatorGame.crashPoint) {
+                crashAviator();
+                return;
+            }
+            
+            // Continua a animação
+            aviatorGame.animationFrame = requestAnimationFrame(updateAviatorGame);
+        }
+
+        function crashAviator() {
+            if (!aviatorGame.active) return;
+            
+            cancelAnimationFrame(aviatorGame.animationFrame);
+            aviatorGame.active = false;
+            
+            // Efeito de crash
+            avPlane.style.transform += ' rotate(180deg)';
+            avTrail.style.backgroundColor = 'red';
+            
+            avStatusDisplay.textContent = `O avião caiu em ${aviatorGame.crashPoint.toFixed(2)}x!`;
+            showNotification(`O avião caiu em ${aviatorGame.crashPoint.toFixed(2)}x!`, 'red');
+            
+            // Reseta após 3 segundos
+            setTimeout(() => {
+                avPlane.style.transform = 'translateX(0) translateY(0) rotate(0deg)';
+                avTrail.style.width = '0';
+                avTrail.style.backgroundColor = 'red';
+                avStartGameBtn.classList.remove('hidden');
+                avCashOutBtn.classList.add('hidden');
+                avStatusDisplay.textContent = 'Pronto para decolar!';
+            }, 3000);
+        }
+
+        function cashOutAviator() {
+            if (!aviatorGame.active) return;
+            
+            cancelAnimationFrame(aviatorGame.animationFrame);
+            const winAmount = aviatorGame.betAmount * aviatorGame.multiplier;
+            updateUserBalance(currentUser.balance + winAmount);
+            
+            aviatorGame.active = false;
+            avStatusDisplay.textContent = `Você retirou em ${aviatorGame.multiplier.toFixed(2)}x! Ganhou R$${winAmount.toFixed(2)}`;
+            showNotification(`Você ganhou R$${winAmount.toFixed(2)} no Aviador!`, 'green');
+            
+            // Efeito visual de vitória
+            avPlane.classList.add('animate-pulse');
+            avTrail.style.backgroundColor = 'green';
+            
+            // Reseta após 3 segundos
+            setTimeout(() => {
+                avPlane.style.transform = 'translateX(0) translateY(0) rotate(0deg)';
+                avPlane.classList.remove('animate-pulse');
+                avTrail.style.width = '0';
+                avTrail.style.backgroundColor = 'red';
+                avStartGameBtn.classList.remove('hidden');
+                avCashOutBtn.classList.add('hidden');
+                avStatusDisplay.textContent = 'Pronto para decolar!';
+            }, 3000);
+        }
+
+        // Dice Game Functions
+        function rollDice() {
+            const bet = parseFloat(document.getElementById('dice-bet-amount').value);
+            const chosenNumber = parseInt(document.getElementById('dice-number').value);
+            
+            if (isNaN(bet) || bet < 1) {
+                alert('O valor mínimo para aposta é R$1,00');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                alert('Saldo insuficiente para esta aposta');
+                return;
+            }
+            
+            updateUserBalance(currentUser.balance - bet);
+            
+            document.getElementById('dice-display').innerHTML = '<i class="fas fa-dice-d6 text-gray-600 animate-spin"></i>';
+            document.getElementById('dice-status').textContent = 'Girando...';
+            
+            setTimeout(() => {
+                const result = Math.floor(Math.random() * 6) + 1;
+                document.getElementById('dice-display').innerHTML = `<i class="fas fa-dice-${['one', 'two', 'three', 'four', 'five', 'six'][result - 1]} text-red-500"></i>`;
+                
+                if (result === chosenNumber) {
+                    const winAmount = bet * 5;
+                    updateUserBalance(currentUser.balance + winAmount);
+                    document.getElementById('dice-result').textContent = `Você acertou! Ganhou R$${winAmount.toFixed(2)}`;
+                    document.getElementById('dice-result').className = 'text-xl font-bold text-green-500';
+                    showNotification(`Você ganhou R$${winAmount.toFixed(2)} nos Dados!`, 'green');
+                } else {
+                    document.getElementById('dice-result').textContent = `Você errou! Perdeu R$${bet.toFixed(2)}`;
+                    document.getElementById('dice-result').className = 'text-xl font-bold text-red-500';
+                    showNotification(`Você perdeu R$${bet.toFixed(2)} nos Dados!`, 'red');
+                }
+                
+                document.getElementById('dice-status').textContent = `O dado caiu no número ${result}`;
+            }, 1500);
+        }
+
+        // Slot Machine Game
+        const slotSymbols = ["🍒", "🍋", "🍊", "🍇", "🔔", "7️⃣", "💰"];
+        const slotPaytable = {
+            "🍒🍒🍒": 2,
+            "🍋🍋🍋": 3,
+            "🍊🍊🍊": 3,
+            "🍇🍇🍇": 4,
+            "🔔🔔🔔": 5,
+            "7️⃣7️⃣7️⃣": 10,
+            "💰💰💰": 15,
+            "7️⃣7️⃣💰": 5,
+            "7️⃣💰💰": 3,
+            "💰💰7️⃣": 3,
+            "💰7️⃣7️⃣": 5
+        };
+
+        let slotGame = {
+            spinning: false,
+            betAmount: 0
+        };
+
+        document.getElementById('spin-slot').addEventListener('click', spinSlot);
+
+        function spinSlot() {
+            const bet = parseFloat(document.getElementById('slot-bet-amount').value);
+            
+            if (isNaN(bet) || bet < 1) {
+                showNotification('O valor mínimo para aposta é R$1,00', 'red');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                showNotification('Saldo insuficiente para esta aposta', 'red');
+                return;
+            }
+            
+            if (slotGame.spinning) return;
+            
+            slotGame.spinning = true;
+            slotGame.betAmount = bet;
+            updateUserBalance(currentUser.balance - bet);
+            
+            document.getElementById('slot-current-bet').textContent = `R$ ${bet.toFixed(2)}`;
+            document.getElementById('slot-win-amount').textContent = 'R$ 0,00';
+            document.getElementById('slot-last-result').textContent = '-';
+            document.getElementById('slot-status').textContent = 'Girando...';
+            
+            const reels = document.querySelectorAll('.slot-reel');
+            const spinDuration = 2000; // 2 seconds
+            
+            // Spin animation
+            reels.forEach((reel, index) => {
+                const startTime = Date.now();
+                const spin = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / spinDuration, 1);
+                    
+                    // Faster spinning at the beginning, slowing down
+                    const speed = 1 - Math.pow(progress, 2);
+                    const symbolIndex = Math.floor(Math.random() * slotSymbols.length);
+                    reel.textContent = slotSymbols[symbolIndex];
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(spin);
+                    } else {
+                        // Final position for this reel
+                        const finalSymbol = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+                        reel.textContent = finalSymbol;
+                        
+                        // Check if all reels have stopped
+                        if (index === reels.length - 1) {
+                            finishSlotSpin();
+                        }
+                    }
+                };
+                
+                spin();
+            });
+        }
+
+        function finishSlotSpin() {
+            slotGame.spinning = false;
+            
+            // Get the result
+            const reels = document.querySelectorAll('.slot-reel');
+            const result = Array.from(reels).map(reel => reel.textContent).join('');
+            
+            // Check for winning combinations
+            let winMultiplier = 0;
+            for (const [pattern, multiplier] of Object.entries(slotPaytable)) {
+                if (result.includes(pattern)) {
+                    winMultiplier = multiplier;
+                    break;
+                }
+            }
+            
+            // Calculate win
+            const winAmount = slotGame.betAmount * winMultiplier;
+            
+            if (winMultiplier > 0) {
+                updateUserBalance(currentUser.balance + winAmount);
+                document.getElementById('slot-win-amount').textContent = `R$ ${winAmount.toFixed(2)}`;
+                document.getElementById('slot-last-result').textContent = 'GANHOU!';
+                document.getElementById('slot-status').textContent = 'Vitória!';
+                showNotification(`Você ganhou R$${winAmount.toFixed(2)} no Caça-Níqueis!`, 'green');
+            } else {
+                document.getElementById('slot-win-amount').textContent = 'R$ 0,00';
+                document.getElementById('slot-last-result').textContent = 'PERDEU';
+                document.getElementById('slot-status').textContent = 'Sem prêmio';
+                showNotification(`Você perdeu R$${slotGame.betAmount.toFixed(2)} no Caça-Níqueis!`, 'red');
+            }
+        }
+
+        // Roulette Game
+        const rouletteNumbers = [
+            { number: 0, color: 'green' },
+            { number: 1, color: 'red' },
+            { number: 2, color: 'black' },
+            { number: 3, color: 'red' },
+            // ... complete roulette numbers (1-36 alternating red/black)
+        ];
+
+        let rouletteGame = {
+            spinning: false,
+            betAmount: 0,
+            betType: null
+        };
+
+        document.querySelectorAll('.roulette-bet-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (rouletteGame.spinning) return;
+                
+                const bet = parseFloat(document.getElementById('roulette-bet-amount').value);
+                const betType = this.dataset.betType;
+                
+                if (isNaN(bet) || bet < 1) {
+                    showNotification('O valor mínimo para aposta é R$1,00', 'red');
+                    return;
+                }
+                
+                if (bet > currentUser.balance) {
+                    showNotification('Saldo insuficiente para esta aposta', 'red');
+                    return;
+                }
+                
+                rouletteGame.betAmount = bet;
+                rouletteGame.betType = betType;
+                updateUserBalance(currentUser.balance - bet);
+                
+                document.getElementById('roulette-current-bet').textContent = `R$ ${bet.toFixed(2)}`;
+                document.getElementById('roulette-bet-type').textContent = this.textContent.trim();
+                document.getElementById('roulette-result').textContent = '-';
+                document.getElementById('roulette-win-amount').textContent = 'R$ 0,00';
+                document.getElementById('roulette-status').textContent = 'Girando roleta...';
+                
+                spinRoulette();
+            });
+        });
+
+        function spinRoulette() {
+            rouletteGame.spinning = true;
+            
+            const wheel = document.querySelector('.roulette-wheel .wheel');
+            const ball = document.querySelector('.roulette-wheel .ball');
+            
+            // Reset position
+            wheel.style.transform = 'rotate(0deg)';
+            ball.style.transform = 'rotate(0deg)';
+            
+            // Spin animation
+            const spinDuration = 5000; // 5 seconds
+            const startTime = Date.now();
+            
+            const spin = () => {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / spinDuration, 1);
+                
+                // Easing function for smooth slowdown
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const rotation = easeOut * 360 * 5; // 5 full rotations
+                
+                wheel.style.transform = `rotate(${-rotation}deg)`;
+                ball.style.transform = `rotate(${rotation * 1.5}deg)`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(spin);
+                } else {
+                    finishRouletteSpin();
+                }
+            };
+            
+            spin();
+        }
+
+        function finishRouletteSpin() {
+            rouletteGame.spinning = false;
+            
+            // Determine result
+            const resultNumber = Math.floor(Math.random() * 37); // 0-36
+            const result = rouletteNumbers.find(n => n.number === resultNumber) || { number: 0, color: 'green' };
+            
+            document.getElementById('roulette-result').textContent = `${result.number} ${result.color === 'red' ? 'Vermelho' : result.color === 'black' ? 'Preto' : 'Verde'}`;
+            
+            // Determine win
+            let winMultiplier = 0;
+            
+            switch (rouletteGame.betType) {
+                case 'red':
+                    if (result.color === 'red') winMultiplier = 2;
+                    break;
+                case 'black':
+                    if (result.color === 'black') winMultiplier = 2;
+                    break;
+                case 'green':
+                    if (result.number === 0) winMultiplier = 14;
+                    break;
+                case 'even':
+                    if (result.number !== 0 && result.number % 2 === 0) winMultiplier = 2;
+                    break;
+            }
+            
+            const winAmount = rouletteGame.betAmount * winMultiplier;
+            
+            if (winMultiplier > 0) {
+                updateUserBalance(currentUser.balance + winAmount);
+                document.getElementById('roulette-win-amount').textContent = `R$ ${winAmount.toFixed(2)}`;
+                document.getElementById('roulette-status').textContent = 'Você ganhou!';
+                showNotification(`Você ganhou R$${winAmount.toFixed(2)} na Roleta!`, 'green');
+            } else {
+                document.getElementById('roulette-win-amount').textContent = 'R$ 0,00';
+                document.getElementById('roulette-status').textContent = 'Você perdeu';
+                showNotification(`Você perdeu R$${rouletteGame.betAmount.toFixed(2)} na Roleta!`, 'red');
+            }
+        }
+
+        // Blackjack Game
+        const cardValues = {
+            'A': 11, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+            '10': 10, 'J': 10, 'Q': 10, 'K': 10
+        };
+
+        let blackjackGame = {
+            active: false,
+            betAmount: 0,
+            deck: [],
+            dealerHand: [],
+            playerHand: [],
+            dealerScore: 0,
+            playerScore: 0
+        };
+
+        document.getElementById('blackjack-start').addEventListener('click', startBlackjack);
+        document.getElementById('blackjack-hit').addEventListener('click', hitBlackjack);
+        document.getElementById('blackjack-stand').addEventListener('click', standBlackjack);
+
+        function startBlackjack() {
+            const bet = parseFloat(document.getElementById('blackjack-bet-amount').value);
+            
+            if (isNaN(bet) || bet < 1) {
+                showNotification('O valor mínimo para aposta é R$1,00', 'red');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                showNotification('Saldo insuficiente para esta aposta', 'red');
+                return;
+            }
+            
+            blackjackGame = {
+                active: true,
+                betAmount: bet,
+                deck: createDeck(),
+                dealerHand: [],
+                playerHand: [],
+                dealerScore: 0,
+                playerScore: 0
+            };
+            
+            updateUserBalance(currentUser.balance - bet);
+            
+            // Deal initial cards
+            blackjackGame.playerHand.push(drawCard());
+            blackjackGame.dealerHand.push(drawCard());
+            blackjackGame.playerHand.push(drawCard());
+            blackjackGame.dealerHand.push(drawCard());
+            
+            // Calculate scores
+            blackjackGame.playerScore = calculateScore(blackjackGame.playerHand);
+            blackjackGame.dealerScore = calculateScore([blackjackGame.dealerHand[0]]); // Only show one dealer card
+            
+            // Update UI
+            document.getElementById('blackjack-current-bet').textContent = `R$ ${bet.toFixed(2)}`;
+            document.getElementById('blackjack-dealer-score').textContent = '?';
+            document.getElementById('blackjack-player-score').textContent = blackjackGame.playerScore;
+            document.getElementById('blackjack-result').textContent = '-';
+            document.getElementById('blackjack-status').textContent = 'Sua vez';
+            
+            // Show dealer's face-down card and one face-up
+            const dealerCardsContainer = document.getElementById('dealer-cards-container');
+            dealerCardsContainer.innerHTML = '';
+            
+            // First card face down
+            const faceDownCard = document.createElement('div');
+            faceDownCard.className = 'card bg-gray-700 text-white rounded-md flex items-center justify-center font-bold text-xl';
+            faceDownCard.textContent = '?';
+            dealerCardsContainer.appendChild(faceDownCard);
+            
+            // Second card face up
+            const dealerCard = document.createElement('div');
+            dealerCard.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl';
+            dealerCard.textContent = blackjackGame.dealerHand[1].value;
+            dealerCardsContainer.appendChild(dealerCard);
+            
+            // Show player's cards
+            const playerCardsContainer = document.getElementById('player-cards-container');
+            playerCardsContainer.innerHTML = '';
+            
+            blackjackGame.playerHand.forEach(card => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl';
+                playerCard.textContent = card.value;
+                playerCardsContainer.appendChild(playerCard);
+            });
+            
+            // Show actions
+            document.getElementById('blackjack-actions').classList.remove('hidden');
+            
+            // Check for blackjack
+            if (blackjackGame.playerScore === 21) {
+                setTimeout(() => {
+                    standBlackjack();
+                }, 1000);
+            }
+        }
+
+        function createDeck() {
+            const suits = ['H', 'D', 'C', 'S']; // Hearts, Diamonds, Clubs, Spades
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            const deck = [];
+            
+            for (const suit of suits) {
+                for (const value of values) {
+                    deck.push({ suit, value });
+                }
+            }
+            
+            // Shuffle the deck
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            
+            return deck;
+        }
+
+        function drawCard() {
+            return blackjackGame.deck.pop();
+        }
+
+        function calculateScore(hand) {
+            let score = 0;
+            let aces = 0;
+            
+            for (const card of hand) {
+                score += cardValues[card.value];
+                if (card.value === 'A') aces++;
+            }
+            
+            // Adjust for aces if score is over 21
+            while (score > 21 && aces > 0) {
+                score -= 10;
+                aces--;
+            }
+            
+            return score;
+        }
+
+        function hitBlackjack() {
+            if (!blackjackGame.active) return;
+            
+            // Deal a new card to player
+            const newCard = drawCard();
+            blackjackGame.playerHand.push(newCard);
+            blackjackGame.playerScore = calculateScore(blackjackGame.playerHand);
+            
+            // Update UI
+            document.getElementById('blackjack-player-score').textContent = blackjackGame.playerScore;
+            
+            const playerCardsContainer = document.getElementById('player-cards-container');
+            const playerCard = document.createElement('div');
+            playerCard.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl';
+            playerCard.textContent = newCard.value;
+            playerCardsContainer.appendChild(playerCard);
+            
+            // Check for bust
+            if (blackjackGame.playerScore > 21) {
+                document.getElementById('blackjack-result').textContent = 'Estourou!';
+                document.getElementById('blackjack-status').textContent = 'Você perdeu';
+                document.getElementById('blackjack-actions').classList.add('hidden');
+                blackjackGame.active = false;
+                
+                showNotification(`Você perdeu R$${blackjackGame.betAmount.toFixed(2)} no Blackjack!`, 'red');
+            }
+        }
+
+        function standBlackjack() {
+            if (!blackjackGame.active) return;
+            
+            blackjackGame.active = false;
+            document.getElementById('blackjack-actions').classList.add('hidden');
+            
+            // Reveal dealer's cards
+            blackjackGame.dealerScore = calculateScore(blackjackGame.dealerHand);
+            document.getElementById('blackjack-dealer-score').textContent = blackjackGame.dealerScore;
+            
+            const dealerCardsContainer = document.getElementById('dealer-cards-container');
+            dealerCardsContainer.innerHTML = '';
+            
+            blackjackGame.dealerHand.forEach(card => {
+                const dealerCard = document.createElement('div');
+                dealerCard.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl';
+                dealerCard.textContent = card.value;
+                dealerCardsContainer.appendChild(dealerCard);
+            });
+            
+            // Dealer draws until 17 or higher
+            while (blackjackGame.dealerScore < 17) {
+                const newCard = drawCard();
+                blackjackGame.dealerHand.push(newCard);
+                blackjackGame.dealerScore = calculateScore(blackjackGame.dealerHand);
+                
+                const dealerCard = document.createElement('div');
+                dealerCard.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl';
+                dealerCard.textContent = newCard.value;
+                dealerCardsContainer.appendChild(dealerCard);
+            }
+            
+            document.getElementById('blackjack-dealer-score').textContent = blackjackGame.dealerScore;
+            
+            // Determine winner
+            let result = '';
+            let winAmount = 0;
+            
+            if (blackjackGame.playerScore > 21) {
+                result = 'Você estourou';
+            } else if (blackjackGame.dealerScore > 21) {
+                result = 'Dealer estourou';
+                winAmount = blackjackGame.betAmount * 2;
+            } else if (blackjackGame.playerScore === blackjackGame.dealerScore) {
+                result = 'Empate';
+                winAmount = blackjackGame.betAmount;
+            } else if (blackjackGame.playerScore > blackjackGame.dealerScore) {
+                result = 'Você ganhou';
+                winAmount = blackjackGame.betAmount * 2;
+            } else {
+                result = 'Dealer ganhou';
+            }
+            
+            // Check for blackjack (natural 21 with 2 cards)
+            if (blackjackGame.playerScore === 21 && blackjackGame.playerHand.length === 2) {
+                result = 'Blackjack!';
+                winAmount = blackjackGame.betAmount * 2.5;
+            }
+            
+            document.getElementById('blackjack-result').textContent = result;
+            document.getElementById('blackjack-status').textContent = 'Fim do jogo';
+            
+            if (winAmount > 0) {
+                updateUserBalance(currentUser.balance + winAmount);
+                document.getElementById('blackjack-result').className = 'text-green-500';
+                showNotification(`Você ganhou R$${winAmount.toFixed(2)} no Blackjack!`, 'green');
+            } else {
+                document.getElementById('blackjack-result').className = 'text-red-500';
+                showNotification(`Você perdeu R$${blackjackGame.betAmount.toFixed(2)} no Blackjack!`, 'red');
+            }
+        }
+
+        // Video Poker Game
+        const pokerHands = {
+            'ROYAL_FLUSH': 250,
+            'STRAIGHT_FLUSH': 50,
+            'FOUR_OF_A_KIND': 25,
+            'FULL_HOUSE': 9,
+            'FLUSH': 6,
+            'STRAIGHT': 4,
+            'THREE_OF_A_KIND': 3,
+            'TWO_PAIR': 2,
+            'JACKS_OR_BETTER': 1
+        };
+
+        let pokerGame = {
+            active: false,
+            betAmount: 0,
+            deck: [],
+            hand: [],
+            heldCards: []
+        };
+
+        document.getElementById('poker-deal').addEventListener('click', dealPoker);
+        document.getElementById('poker-draw').addEventListener('click', drawPoker);
+
+        function dealPoker() {
+            const bet = parseFloat(document.getElementById('poker-bet-amount').value);
+            
+            if (isNaN(bet) || bet < 1) {
+                showNotification('O valor mínimo para aposta é R$1,00', 'red');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                showNotification('Saldo insuficiente para esta aposta', 'red');
+                return;
+            }
+            
+            pokerGame = {
+                active: true,
+                betAmount: bet,
+                deck: createPokerDeck(),
+                hand: [],
+                heldCards: []
+            };
+            
+            updateUserBalance(currentUser.balance - bet);
+            
+            // Deal 5 cards
+            for (let i = 0; i < 5; i++) {
+                pokerGame.hand.push(drawPokerCard());
+            }
+            
+            // Update UI
+            document.getElementById('poker-current-bet').textContent = `R$ ${bet.toFixed(2)}`;
+            document.getElementById('poker-hand').textContent = '-';
+            document.getElementById('poker-win-amount').textContent = 'R$ 0,00';
+            document.getElementById('poker-status').textContent = 'Segure as cartas que deseja manter';
+            
+            // Show cards
+            const pokerHand = document.querySelector('.poker-hand');
+            pokerHand.innerHTML = '';
+            
+            pokerGame.hand.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl cursor-pointer';
+                cardElement.textContent = `${card.value}${card.suit}`;
+                cardElement.dataset.index = index;
+                
+                cardElement.addEventListener('click', function() {
+                    if (!pokerGame.active) return;
+                    
+                    const cardIndex = parseInt(this.dataset.index);
+                    
+                    if (pokerGame.heldCards.includes(cardIndex)) {
+                        // Unhold
+                        pokerGame.heldCards = pokerGame.heldCards.filter(i => i !== cardIndex);
+                        this.classList.remove('border-2', 'border-red-500');
+                    } else {
+                        // Hold
+                        pokerGame.heldCards.push(cardIndex);
+                        this.classList.add('border-2', 'border-red-500');
+                    }
+                });
+                
+                pokerHand.appendChild(cardElement);
+            });
+            
+            // Switch buttons
+            document.getElementById('poker-deal').classList.add('hidden');
+            document.getElementById('poker-draw').classList.remove('hidden');
+        }
+
+        function createPokerDeck() {
+            const suits = ['♠', '♥', '♦', '♣'];
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            const deck = [];
+            
+            for (const suit of suits) {
+                for (const value of values) {
+                    deck.push({ suit, value });
+                }
+            }
+            
+            // Shuffle the deck
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            
+            return deck;
+        }
+
+        function drawPokerCard() {
+            return pokerGame.deck.pop();
+        }
+
+        function drawPoker() {
+            if (!pokerGame.active) return;
+            
+            pokerGame.active = false;
+            
+            // Replace cards that weren't held
+            const newHand = [];
+            const pokerHand = document.querySelector('.poker-hand');
+            
+            for (let i = 0; i < 5; i++) {
+                if (pokerGame.heldCards.includes(i)) {
+                    newHand.push(pokerGame.hand[i]);
+                } else {
+                    newHand.push(drawPokerCard());
+                }
+            }
+            
+            pokerGame.hand = newHand;
+            
+            // Update UI with new cards
+            pokerHand.innerHTML = '';
+            
+            pokerGame.hand.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl';
+                cardElement.textContent = `${card.value}${card.suit}`;
+                pokerHand.appendChild(cardElement);
+            });
+            
+            // Evaluate hand
+            const handRank = evaluatePokerHand(pokerGame.hand);
+            const winMultiplier = pokerHands[handRank] || 0;
+            const winAmount = pokerGame.betAmount * winMultiplier;
+            
+            // Update UI
+            document.getElementById('poker-hand').textContent = formatPokerHand(handRank);
+            document.getElementById('poker-win-amount').textContent = `R$ ${winAmount.toFixed(2)}`;
+            document.getElementById('poker-status').textContent = 'Fim do jogo';
+            
+            if (winMultiplier > 0) {
+                updateUserBalance(currentUser.balance + winAmount);
+                showNotification(`Você ganhou R$${winAmount.toFixed(2)} no Video Poker! (${formatPokerHand(handRank)})`, 'green');
+            } else {
+                showNotification(`Você perdeu R$${pokerGame.betAmount.toFixed(2)} no Video Poker!`, 'red');
+            }
+            
+            // Switch buttons
+            document.getElementById('poker-deal').classList.remove('hidden');
+            document.getElementById('poker-draw').classList.add('hidden');
+        }
+
+        function evaluatePokerHand(hand) {
+            // Implement poker hand evaluation logic
+            // This is a simplified version - a full implementation would be more complex
+            
+            const values = hand.map(card => card.value);
+            const suits = hand.map(card => card.suit);
+            
+            // Check for flush (all same suit)
+            const isFlush = suits.every(suit => suit === suits[0]);
+            
+            // Check for straight
+            const valueOrder = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+            const sortedValues = [...values].sort((a, b) => valueOrder.indexOf(a) - valueOrder.indexOf(b));
+            let isStraight = true;
+            
+            for (let i = 1; i < sortedValues.length; i++) {
+                if (valueOrder.indexOf(sortedValues[i]) !== valueOrder.indexOf(sortedValues[i - 1]) + 1) {
+                    isStraight = false;
+                    break;
+                }
+            }
+            
+            // Check for royal straight (10,J,Q,K,A)
+            const isRoyal = ['10', 'J', 'Q', 'K', 'A'].every(val => values.includes(val));
+            
+            // Count value occurrences
+            const valueCounts = {};
+            values.forEach(value => {
+                valueCounts[value] = (valueCounts[value] || 0) + 1;
+            });
+            
+            const counts = Object.values(valueCounts).sort((a, b) => b - a);
+            
+            // Determine hand rank
+            if (isFlush && isRoyal) return 'ROYAL_FLUSH';
+            if (isFlush && isStraight) return 'STRAIGHT_FLUSH';
+            if (counts[0] === 4) return 'FOUR_OF_A_KIND';
+            if (counts[0] === 3 && counts[1] === 2) return 'FULL_HOUSE';
+            if (isFlush) return 'FLUSH';
+            if (isStraight) return 'STRAIGHT';
+            if (counts[0] === 3) return 'THREE_OF_A_KIND';
+            if (counts[0] === 2 && counts[1] === 2) return 'TWO_PAIR';
+            
+            // Check for Jacks or better
+            const highCards = ['J', 'Q', 'K', 'A'];
+            if (counts[0] === 2 && highCards.includes(Object.keys(valueCounts).find(key => valueCounts[key] === 2))) {
+                return 'JACKS_OR_BETTER';
+            }
+            
+            return 'NONE';
+        }
+
+        function formatPokerHand(handRank) {
+            const names = {
+                'ROYAL_FLUSH': 'Royal Flush',
+                'STRAIGHT_FLUSH': 'Straight Flush',
+                'FOUR_OF_A_KIND': 'Quadra',
+                'FULL_HOUSE': 'Full House',
+                'FLUSH': 'Flush',
+                'STRAIGHT': 'Sequência',
+                'THREE_OF_A_KIND': 'Trinca',
+                'TWO_PAIR': 'Dois Pares',
+                'JACKS_OR_BETTER': 'Par de Valetes ou Melhor',
+                'NONE': 'Sem combinação'
+            };
+            
+            return names[handRank] || handRank;
+        }
+
+        // Mines Game Functions
+        let gameState = {
+            active: false,
+            betAmount: 0,
+            minesCount: 0,
+            safeCellsClicked: 0,
+            multiplier: 1,
+            minesPositions: [],
+            revealedCells: []
+        };
+
+        const multiplierValues = {
+            1: 1.10,
+            2: 1.25,
+            3: 1.40,
+            4: 1.60,
+            5: 2.00,
+            6: 2.50,
+            7: 3.00,
+            8: 3.50,
+            9: 3.75,
+            10: 4.00
+        };
+
+        document.getElementById('start-game').addEventListener('click', startGame);
+        document.getElementById('cash-out').addEventListener('click', cashOut);
+
+        function startGame() {
+            const bet = parseFloat(document.getElementById('bet-amount').value);
+            const mines = parseInt(document.getElementById('mines-count').value);
+            
+            if (isNaN(bet) || bet < 1) {
+                alert('O valor mínimo para aposta é R$1,00');
+                return;
+            }
+            
+            if (bet > currentUser.balance) {
+                alert('Saldo insuficiente para esta aposta');
+                return;
+            }
+            
+            // Deduct bet from balance
+            updateUserBalance(currentUser.balance - bet);
+            
+            // Set up game state
+            gameState = {
+                active: true,
+                betAmount: bet,
+                minesCount: mines,
+                safeCellsClicked: 0,
+                multiplier: multiplierValues[mines],
+                minesPositions: [],
+                revealedCells: []
+            };
+            
+            // Generate mines positions
+            const totalCells = 25;
+            while (gameState.minesPositions.length < mines) {
+                const randomPos = Math.floor(Math.random() * totalCells);
+                if (!gameState.minesPositions.includes(randomPos)) {
+                    gameState.minesPositions.push(randomPos);
+                }
+            }
+            
+            // Update UI
+            document.getElementById('current-bet').textContent = `R$ ${bet.toFixed(2)}`;
+            document.getElementById('current-mines').textContent = mines;
+            document.getElementById('safe-clicks').textContent = '0';
+            document.getElementById('current-multiplier').textContent = `${gameState.multiplier.toFixed(2)}x`;
+            document.getElementById('potential-win').textContent = `R$ ${(bet * gameState.multiplier).toFixed(2)}`;
+            document.getElementById('game-status').textContent = 'Jogo em andamento';
+            document.getElementById('game-status').className = 'text-sm px-3 py-1 bg-yellow-600 rounded-full';
+            document.getElementById('cash-out').classList.remove('hidden');
+            
+            // Generate game board
+            renderGameBoard();
+        }
+
+        function renderGameBoard() {
+            const gameBoard = document.getElementById('game-board');
+            gameBoard.innerHTML = '';
+            
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell bg-gray-800 h-16 rounded flex items-center justify-center cursor-pointer font-bold text-xl border border-gray-700 hover:bg-gray-700';
+                cell.dataset.index = i;
+                
+                if (gameState.revealedCells.includes(i)) {
+                    if (gameState.minesPositions.includes(i)) {
+                        cell.innerHTML = '<i class="fas fa-bomb text-red-500"></i>';
+                        cell.className = 'cell bg-red-900 h-16 rounded flex items-center justify-center font-bold text-xl border border-red-700';
+                    } else {
+                        cell.textContent = '💎';
+                        cell.className = 'cell bg-green-900 h-16 rounded flex items-center justify-center font-bold text-xl border border-green-700';
+                    }
+                } else if (gameState.active) {
+                    cell.addEventListener('click', () => revealCell(i));
+                }
+                
+                gameBoard.appendChild(cell);
+            }
+        }
+
+        function revealCell(index) {
+            if (!gameState.active || gameState.revealedCells.includes(index)) return;
+            
+            gameState.revealedCells.push(index);
+            
+            if (gameState.minesPositions.includes(index)) {
+                // Hit a mine - game over
+                gameState.active = false;
+                document.getElementById('game-status').textContent = 'Você perdeu!';
+                document.getElementById('game-status').className = 'text-sm px-3 py-1 bg-red-600 rounded-full';
+                document.getElementById('cash-out').classList.add('hidden');
+                
+                // Reveal all mines
+                gameState.minesPositions.forEach(pos => {
+                    if (!gameState.revealedCells.includes(pos)) {
+                        gameState.revealedCells.push(pos);
+                    }
+                });
+                
+                renderGameBoard();
+                
+                showNotification(`Você perdeu R$${gameState.betAmount.toFixed(2)} em uma mina!`, 'red');
+            } else {
+                // Safe cell
+                gameState.safeCellsClicked++;
+                gameState.multiplier += 0.1 * gameState.minesCount;
+                
+                // Update UI
+                document.getElementById('safe-clicks').textContent = gameState.safeCellsClicked;
+                document.getElementById('current-multiplier').textContent = `${gameState.multiplier.toFixed(2)}x`;
+                document.getElementById('potential-win').textContent = `R$ ${(gameState.betAmount * gameState.multiplier).toFixed(2)}`;
+                
+                renderGameBoard();
+                
+                // Check if all safe cells are revealed
+                if (gameState.revealedCells.length + gameState.minesCount === 25) {
+                    cashOut(true);
+                }
+            }
+        }
+
+        function cashOut(allRevealed = false) {
+            if (!gameState.active) return;
+            
+            const winAmount = gameState.betAmount * gameState.multiplier;
+            updateUserBalance(currentUser.balance + winAmount);
+            
+            gameState.active = false;
+            document.getElementById('game-status').textContent = allRevealed ? 'Todos os blocos seguros revelados!' : 'Você retirou!';
+            document.getElementById('game-status').className = 'text-sm px-3 py-1 bg-green-600 rounded-full';
+            document.getElementById('cash-out').classList.add('hidden');
+            
+            // Reveal all cells
+            for (let i = 0; i < 25; i++) {
+                if (!gameState.revealedCells.includes(i)) {
+                    gameState.revealedCells.push(i);
+                }
+            }
+            
+            renderGameBoard();
+            
+            showNotification(`Você ganhou R$${winAmount.toFixed(2)}!`, 'green');
+        }
+
+        // Initialize
+        checkLoggedInUser();
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const userMenu = document.getElementById('user-menu');
+            const userMenuBtn = document.getElementById('user-menu-btn');
+            if (!userMenu.contains(e.target) && e.target !== userMenuBtn) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Toggle user menu
+        document.getElementById('user-menu-btn').addEventListener('click', () => {
+            document.getElementById('user-menu').classList.toggle('hidden');
+        });
+
+        // Deposit Modal
+        document.getElementById('deposit-btn').addEventListener('click', () => {
+            document.getElementById('deposit-modal').classList.remove('hidden');
+        });
+
+        document.getElementById('close-deposit-modal').addEventListener('click', () => {
+            document.getElementById('deposit-modal').classList.add('hidden');
+        });
+
+        document.getElementById('copy-pix').addEventListener('click', () => {
+            navigator.clipboard.writeText('reivcontato@gmail.com');
+            const originalText = document.getElementById('copy-pix').innerHTML;
+            document.getElementById('copy-pix').innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                document.getElementById('copy-pix').innerHTML = originalText;
+            }, 2000);
+        });
+
+        document.getElementById('confirm-deposit').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('deposit-amount').value);
+            if (isNaN(amount)) {
+                alert('Por favor, insira um valor válido');
+                return;
+            }
+            
+            if (amount < 10) {
+                alert('O valor mínimo para depósito é R$10,00');
+                return;
+            }
+            
+            if (amount > 5000) {
+                alert('O valor máximo para depósito é R$5.000,00');
+                return;
+            }
+            
+            updateUserBalance(currentUser.balance + amount);
+            
+            document.getElementById('deposit-modal').classList.add('hidden');
+            document.getElementById('deposit-amount').value = '';
+            
+            showNotification(`Depósito de R$${amount.toFixed(2)} realizado com sucesso!`, 'green');
+        });
+
+        // Withdraw Modal
+        document.getElementById('withdraw-btn').addEventListener('click', () => {
+            document.getElementById('withdraw-modal').classList.remove('hidden');
+        });
+
+        document.getElementById('close-withdraw-modal').addEventListener('click', () => {
+            document.getElementById('withdraw-modal').classList.add('hidden');
+        });
+
+        document.getElementById('confirm-withdraw').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('withdraw-amount').value);
+            const pixKey = document.getElementById('withdraw-pix-key').value.trim();
+            
+            if (isNaN(amount)) {
+                alert('Por favor, insira um valor válido');
+                return;
+            }
+            
+            if (amount < 50) {
+                alert('O valor mínimo para saque é R$50,00');
+                return;
+            }
+            
+            if (amount > 10000) {
+                alert('O valor máximo para saque é R$10.000,00');
+                return;
+            }
+            
+            if (!pixKey) {
+                alert('Por favor, informe uma chave PIX válida');
+                return;
+            }
+            
+            if (amount > currentUser.balance) {
+                alert('Saldo insuficiente para este saque');
+                return;
+            }
+            
+            updateUserBalance(currentUser.balance - amount);
+            
+            document.getElementById('withdraw-modal').classList.add('hidden');
+            document.getElementById('withdraw-amount').value = '';
+            document.getElementById('withdraw-pix-key').value = '';
+            
+            showNotification('Saque solicitado com sucesso! Você receberá em até 24h úteis.', 'green');
+        });
+
+        // Admin panel - accessible with Ctrl+Shift+A
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                document.getElementById('admin-withdraw-panel').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('close-admin-panel').addEventListener('click', () => {
+            document.getElementById('admin-withdraw-panel').classList.add('hidden');
+        });
+
+        // Dice Game Event Listener
+        document.getElementById('dice-roll').addEventListener('click', rollDice);
+    
+// Painel Admin para Adicionar Saldo (aparece com CTRL+SHIFT+A se for ogreiglzin7)
+document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.shiftKey && e.code === "KeyA") {
+        if (currentUser?.username === "ogreiglzin7") {
+            showAddBalancePanel();
+        } else {
+            alert("Acesso restrito ao administrador.");
+        }
+    }
+});
+
+function showAddBalancePanel() {
+    const usernameList = Object.keys(usersDB.getUsers()).filter(name => name !== "ogreiglzin7");
+    const options = usernameList.map(name => `<option value="\${name}">\${name}</option>`).join("");
+    const overlay = document.createElement("div");
+    overlay.className = "fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50";
+    overlay.innerHTML = `
+        <div class="bg-gray-900 p-6 rounded-lg border border-green-600 max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Enviar Saldo (Painel Admin)</h3>
+                <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm mb-1">Escolher usuário</label>
+                    <input type="text" id="admin-target-user" placeholder="Digite o nick" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded" />
+                </div>
+                <div>
+                    <label class="block text-sm mb-1">Valor (R$)</label>
+                    <input id="admin-add-amount" type="number" min="1" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded" />
+                </div>
+                <button onclick="sendAdminBalance()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Adicionar Saldo
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
+function sendAdminBalance() {
+    const user = document.getElementById('admin-target-user').value;
+    const value = parseFloat(document.getElementById('admin-add-amount').value);
+    if (!user || isNaN(value) || value <= 0) {
+        alert("Usuário ou valor inválido.");
+        return;
+    }
+    const target = usersDB.getUser(user);
+    if (!target) {
+        alert("Usuário não encontrado.");
+        return;
+    }
+    const updatedBalance = target.balance + value;
+    usersDB.updateUser(user, { balance: updatedBalance });
+    alert(`R$${value.toFixed(2)} adicionado ao usuário ${user}.`);
+}
+
+
+const bgMusic = document.getElementById('bg-music');
+const toggleBtn = document.getElementById('toggle-music');
+const musicStatus = document.getElementById('music-status');
+
+toggleBtn.addEventListener('click', () => {
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicStatus.textContent = 'Ligada';
+    } else {
+        bgMusic.pause();
+        musicStatus.textContent = 'Desligada';
+    }
+});
+</script>
+
+<audio id="bg-music" autoplay loop class="hidden">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_2e7f7fa0e6.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+</audio>
+<button id="toggle-music" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded z-50 hover:bg-gray-700">
+    🎵 Música: <span id="music-status">Ligada</span>
+</button>
+
+</body>
+</html>
