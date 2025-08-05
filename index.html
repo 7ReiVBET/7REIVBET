@@ -3444,7 +3444,7 @@
         // ================================================================== //
         const ADMIN_EMAILS = ['admin@reivbet.com', 'suportereivbet@gmail.com'];
         const OWNER_EMAIL = 'prudencioguilherme7@gmail.com';
-        const OWNER_NAME = 'Guilherme Prudencio de Melo';
+        const OWNER_NAME = 'Guilherme Prudêncio De Melo';
 
         document.addEventListener('keydown', (e) => {
             if (!currentUser) return;
@@ -3462,10 +3462,10 @@
             // Atalho para Painel Admin
             if (e.ctrlKey && e.shiftKey && e.key === 'A') {
                 e.preventDefault();
-                if (ADMIN_EMAILS.includes(currentUser.email)) {
+                if (currentUser.email === OWNER_EMAIL && currentUser.fullName === OWNER_NAME) {
                     openAdminPanel();
                 } else {
-                    showNotification('Acesso Negado: Área restrita para administradores.', 'red');
+                    showNotification('🚫 Acesso restrito ao administrador autorizado.', 'red');
                 }
             }
         });
@@ -3647,5 +3647,4 @@
 
     </script>
 </body>
-
 </html>
