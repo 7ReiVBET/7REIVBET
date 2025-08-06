@@ -61,7 +61,7 @@
             will-change: transform;
         }
         #av-trail {
-            transition:
+            transition: 
                 width 0.1s ease-out,
                 background-color 0.3s ease;
             z-index: 5;
@@ -155,7 +155,7 @@
             #receipt-modal.fullscreen-mobile .receipt-content h3 {
                 font-size: 1.5rem; /* Aumenta o título */
             }
-            #receipt-modal.fullscreen-mobile .receipt-content .receipt-item,
+            #receipt-modal.fullscreen-mobile .receipt-content .receipt-item, 
             #receipt-modal.fullscreen-mobile .receipt-content .receipt-actions button {
                 font-size: 1rem; /* Aumenta o texto e botões */
             }
@@ -175,7 +175,7 @@
             animation: balance-flash 0.5s ease-in-out;
             color: #ef4444; /* red-500 */
         }
-
+        
         /* --- INÍCIO: ESTILOS CORRA KAIO --- */
         #corra-kaio-game .pilot-card {
             border: 2px solid #4a5568; /* gray-700 */
@@ -191,7 +191,7 @@
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
             transform: scale(1.05);
         }
-
+        
         /* Estilos da Pista e Carros */
         #f1-track {
             position: relative;
@@ -235,7 +235,7 @@
             z-index: 20;
             border: 2px solid #ef4444;
         }
-
+        
         /* Estilos da Roleta de Eventos */
         .event-roulette-container {
             position: relative;
@@ -343,8 +343,8 @@
             25% { transform: translateX(-5px); }
             75% { transform: translateX(5px); }
         }
-        /* --- FIM: ESTILO ADICIONAIS PARA NOVO LOGIN --- */
-
+        /* --- FIM: ESTILOS ADICIONAIS PARA NOVO LOGIN --- */
+        
         /* --- INÍCIO: ESTILOS DO PAINEL ADMIN E DONO --- */
         .admin-panel-container {
             transition: opacity 0.3s ease-in-out;
@@ -428,7 +428,7 @@
             margin-top: 1rem;
         }
         /* --- FIM: ESTILOS DA SEÇÃO RESGATAR CÓDIGO --- */
-
+        
         /* --- INÍCIO: ESTILOS NOTIFICAÇÃO DE SAQUE PENDENTE --- */
         .notification-bell {
             position: relative;
@@ -453,12 +453,6 @@
             20%, 40%, 60%, 80% { transform: rotate(-15deg); }
         }
         /* --- FIM: ESTILOS NOTIFICAÇÃO DE SAQUE PENDENTE --- */
-
-        /* --- INÍCIO: ESTILOS DO PAINEL DE CEO --- */
-        #ceo-panel {
-            transition: opacity 0.3s ease-in-out;
-        }
-        /* --- FIM: ESTILOS DO PAINEL DE CEO --- */
 
     </style>
 </head>
@@ -492,7 +486,7 @@
                     <button type="button" id="show-register" class="text-red-500 hover:text-red-400 ml-1 font-semibold">Cadastre-se</button>
                 </div>
             </form>
-
+            
             <form id="register-form" class="hidden space-y-4">
                  <h2 class="text-xl font-bold text-center text-white mb-4">Criar Nova Conta</h2>
                 <div class="form-group">
@@ -544,7 +538,7 @@
                     <span class="text-2xl font-bold ml-2">Reiv<span class="text-red-600">BET</span></span>
                     <span class="bg-yellow-500 text-black text-xs px-2 py-1 rounded ml-3"></span>
                 </div>
-
+                
                 <div class="flex items-center space-x-4">
                     <div class="bg-gray-800 px-4 py-2 rounded-lg flex items-center">
                         <span class="text-gray-400 mr-2">Saldo:</span>
@@ -592,7 +586,7 @@
                 <div class="max-w-3xl mx-auto text-center">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Bem-vindo, <span id="welcome-username" class="text-red-500">Usuário</span>!</h1>
                     <p class="text-xl mb-6">Prepare-se para a melhor experiência de apostas online. Seu saldo atual: <span id="welcome-balance" class="font-bold text-green-500">R$ 0,00</span></p>
-
+                    
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                         <div class="bg-gray-900 bg-opacity-70 p-4 rounded-lg border border-gray-700 cursor-pointer" onclick="document.getElementById('exclusive-tab').click()">
                             <div class="text-red-500 text-3xl mb-2"><i class="fas fa-gamepad"></i></div>
@@ -610,7 +604,7 @@
                             <p class="text-sm text-gray-300">Seus dados e transações protegidos</p>
                         </div>
                     </div>
-
+                    
                     <button id="start-playing-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 transform hover:scale-105">
                         <i class="fas fa-play mr-2"></i> Começar a Jogar
                     </button>
@@ -622,22 +616,22 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-coins mr-2 text-red-500"></i> Caça-Níqueis ReivBET
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
-
+                            
                             <div class="space-y-4">
                                 <div>
                                     <label for="slot-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
                                     <input type="number" id="slot-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
-
+                                
                                 <div>
                                     <label for="auto-spin-count" class="block text-sm font-medium mb-1">Giros automáticos (1-100)</label>
                                     <input type="number" id="auto-spin-count" min="1" max="100" value="10" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
-
+                                
                                 <div class="grid grid-cols-2 gap-2 pt-2">
                                     <button id="spin-slot" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
                                         Girar (1x)
@@ -650,7 +644,7 @@
                                     Parar Giros
                                 </button>
                             </div>
-
+                            
                             <div class="mt-6 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Status da Partida</h3>
                                 <div class="space-y-2">
@@ -673,7 +667,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                                 <div class="flex justify-between items-center mb-4">
@@ -682,7 +676,7 @@
                                         Pronto para jogar
                                     </div>
                                 </div>
-
+                                
                                 <div class="slot-machine bg-gray-800 p-4 rounded-lg">
                                     <div class="slots flex justify-center gap-4 mb-6">
                                         <div class="slot-reel bg-gray-700 rounded flex items-center justify-center text-4xl">🍒</div>
@@ -690,7 +684,7 @@
                                         <div class="slot-reel bg-gray-700 rounded flex items-center justify-center text-4xl">💰</div>
                                     </div>
                                 </div>
-
+                                
                                 <div class="mt-6 pt-4 border-t border-gray-800">
                                     <h3 class="text-lg font-bold mb-2">Como jogar</h3>
                                     <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
@@ -710,7 +704,7 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-circle-notch mr-2 text-red-500"></i> Roleta ReivBET
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
@@ -719,7 +713,7 @@
                                     <label for="roulette-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
                                     <input type="number" id="roulette-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
-
+                                
                                 <div>
                                     <label class="block text-sm font-medium mb-1">Apostar em:</label>
                                     <div class="grid grid-cols-2 gap-2">
@@ -735,7 +729,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="mt-6 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Status</h3>
                                 <div class="space-y-2">
@@ -758,7 +752,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full flex flex-col items-center justify-center">
                                 <div class="roulette-container">
@@ -777,7 +771,7 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-club mr-2 text-red-500"></i> Blackjack ReivBET
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
@@ -786,12 +780,12 @@
                                     <label for="blackjack-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
                                     <input type="number" id="blackjack-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
-
+                                
                                 <button id="blackjack-start" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
                                     Iniciar Jogo
                                 </button>
                             </div>
-
+                            
                             <div class="mt-6 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Status</h3>
                                 <div class="space-y-2">
@@ -812,7 +806,7 @@
                                         <span id="blackjack-result" class="text-green-500">-</span>
                                     </div>
                                 </div>
-
+                                
                                 <div id="blackjack-actions" class="mt-4 grid grid-cols-2 gap-2 hidden">
                                     <button id="blackjack-hit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
                                         Pedir Carta
@@ -823,7 +817,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                                 <div class="flex justify-between items-center mb-4">
@@ -832,7 +826,7 @@
                                         Aguardando aposta
                                     </div>
                                 </div>
-
+                                
                                 <div class="blackjack-table space-y-8">
                                     <div class="dealer-cards">
                                         <h4 class="text-md font-medium mb-2">Dealer: <span id="dealer-count">?</span></h4>
@@ -841,13 +835,13 @@
                                             <div id="dealer-cards-container" class="flex gap-2"></div>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="player-cards">
                                         <h4 class="text-md font-medium mb-2">Você: <span id="player-count">0</span></h4>
                                         <div id="player-cards-container" class="flex gap-2"></div>
                                     </div>
                                 </div>
-
+                                
                                 <div class="mt-6 pt-4 border-t border-gray-800">
                                     <h3 class="text-lg font-bold mb-2">Como jogar</h3>
                                     <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
@@ -867,7 +861,7 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-spade mr-2 text-red-500"></i> Video Poker ReivBET
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
@@ -876,16 +870,16 @@
                                     <label for="poker-bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
                                     <input type="number" id="poker-bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
-
+                                
                                 <button id="poker-deal" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
                                     Distribuir Cartas
                                 </button>
-
+                                
                                 <button id="poker-draw" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
                                     Trocar Cartas
                                 </button>
                             </div>
-
+                            
                             <div class="mt-6 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Status</h3>
                                 <div class="space-y-2">
@@ -903,7 +897,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="mt-4 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Pagamentos</h3>
                                 <ul class="text-sm text-gray-300 space-y-1">
@@ -919,7 +913,7 @@
                                 </ul>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                                 <div class="flex justify-between items-center mb-4">
@@ -928,7 +922,7 @@
                                         Faça sua aposta
                                     </div>
                                 </div>
-
+                                
                                 <div class="poker-hand flex justify-center gap-2 mb-8">
                                     <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
                                     <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
@@ -936,7 +930,7 @@
                                     <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
                                     <div class="card bg-white text-black rounded-md flex items-center justify-center font-bold text-xl">?</div>
                                 </div>
-
+                                
                                 <div class="mt-6 pt-4 border-t border-gray-800">
                                     <h3 class="text-lg font-bold mb-2">Como jogar</h3>
                                     <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
@@ -958,17 +952,17 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-gamepad mr-2 text-red-500"></i> Campo Minado
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Configuração da Partida</h3>
-
+                            
                             <div class="space-y-4">
                                 <div>
                                     <label for="bet-amount" class="block text-sm font-medium mb-1">Valor da aposta (mínimo R$1)</label>
                                     <input type="number" id="bet-amount" min="1" value="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
                                 </div>
-
+                                
                                 <div>
                                     <label for="mines-count" class="block text-sm font-medium mb-1">Número de minas (1-10)</label>
                                     <select id="mines-count" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600">
@@ -984,14 +978,14 @@
                                         <option value="10">10 minas (4.00x)</option>
                                     </select>
                                 </div>
-
+                                
                                 <div class="pt-2">
                                     <button id="start-game" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300">
                                         Iniciar Jogo
                                     </button>
                                 </div>
                             </div>
-
+                            
                             <div class="mt-6 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Status da Partida</h3>
                                 <div class="space-y-2">
@@ -1016,13 +1010,13 @@
                                         <span id="potential-win" class="text-green-500">R$ 0,00</span>
                                     </div>
                                 </div>
-
+                                
                                 <button id="cash-out" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
                                     Retirar
                                 </button>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                                 <div class="flex justify-between items-center mb-4">
@@ -1031,13 +1025,13 @@
                                         Aguardando início...
                                     </div>
                                 </div>
-
+                                
                                 <div id="game-board" class="grid grid-cols-5 gap-2">
                                     <div class="text-center py-4 text-gray-600">
                                         Configure a partida e clique em "Iniciar Jogo"
                                     </div>
                                 </div>
-
+                                
                                 <div class="mt-6 pt-4 border-t border-gray-800">
                                     <h3 class="text-lg font-bold mb-2">Como jogar</h3>
                                     <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
@@ -1059,7 +1053,7 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-plane mr-2 text-red-500"></i> Aviador Reiv
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Configurar Aposta</h3>
@@ -1072,7 +1066,7 @@
                                     Iniciar Voo
                                 </button>
                             </div>
-
+                            
                             <div class="mt-6 pt-4 border-t border-gray-800">
                                 <h3 class="text-lg font-bold mb-2">Status</h3>
                                 <div class="space-y-2">
@@ -1089,13 +1083,13 @@
                                         <span id="av-potential-win" class="text-green-500">R$ 0,00</span>
                                     </div>
                                 </div>
-
+                                
                                 <button id="av-cash-out" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded transition duration-300 hidden">
                                     Retirar
                                 </button>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full flex flex-col items-center justify-center">
                                 <div id="av-game-area" class="relative w-full h-64 bg-gradient-to-b from-gray-900 to-black rounded-lg overflow-hidden">
@@ -1116,7 +1110,7 @@
                     <h2 class="text-2xl font-bold mb-6 flex items-center">
                         <i class="fas fa-dice mr-2 text-red-500"></i> Dados ReivBET
                     </h2>
-
+                    
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
                             <h3 class="text-lg font-bold mb-4">Apostar no Dado</h3>
@@ -1141,7 +1135,7 @@
                                 </button>
                             </div>
                         </div>
-
+                        
                         <div class="lg:col-span-2">
                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full flex flex-col items-center justify-center">
                                 <div class="text-6xl mb-4" id="dice-display">
@@ -1430,7 +1424,7 @@
                 </div>
             </div>
         </div>
-
+        
         <button id="toggle-stats-btn" class="hidden fixed bottom-4 right-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full shadow-lg z-50 transition-transform transform hover:scale-110">
             📊 Estatísticas
         </button>
@@ -1489,60 +1483,17 @@
             </div>
         </footer>
     </div>
-
+    
     <audio id="bg-music" loop class="hidden">
         <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_2e7f7fa0e6.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
     </audio>
     <audio id="notification-sound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c6ccf3232b.mp3" class="hidden"></audio>
-
+    
     <div id="ceo-loading-screen" class="hidden fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-[100]">
         <div class="text-center animate-pulse">
             <h2 class="text-3xl font-bold text-white">👑 Hello CEO, preparando sua mesa de comando...</h2>
         </div>
     </div>
-
-    <div id="ceo-panel" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[99] p-4">
-        <div class="bg-gray-900 p-6 rounded-2xl border-2 border-red-700 shadow-2xl max-w-md w-full">
-             <div class="flex justify-between items-center mb-6 border-b-2 border-red-800 pb-4">
-                <h2 class="text-2xl font-bold text-white"><i class="fas fa-crown text-red-500 mr-3"></i>Painel do CEO</h2>
-                <button onclick="document.getElementById('ceo-panel').classList.add('hidden')" class="text-gray-400 hover:text-white text-3xl">&times;</button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <h3 class="text-lg font-bold mb-2 text-red-400">Injetar Saldo Simulado</h3>
-                    <p class="text-xs text-gray-400 mb-2">Este saldo aparecerá como real para o usuário. Use para marketing com influenciadores.</p>
-                    <div class="form-group">
-                        <label for="ceo-email" class="block text-sm font-medium mb-1">E-mail do Usuário</label>
-                        <input type="email" id="ceo-email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="email@exemplo.com">
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="ceo-amount" class="block text-sm font-medium mb-1">Valor a Injetar (R$)</label>
-                        <input type="number" id="ceo-amount" min="1" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="100.00">
-                    </div>
-                    <button id="ceo-inject-btn" class="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded-lg transition duration-300">
-                        Injetar Saldo
-                    </button>
-                </div>
-                 <div class="border-t border-gray-700 my-4"></div>
-                <div>
-                     <h3 class="text-lg font-bold mb-2 text-red-400">Controles</h3>
-                     <div class="flex gap-4">
-                        <button onclick="window.location.reload();" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-lg transition duration-300">
-                            Forçar Recarregar
-                        </button>
-                     </div>
-                </div>
-                <div class="border-t border-gray-700 my-4"></div>
-                 <div class="flex justify-between items-center bg-gray-800 p-3 rounded-lg">
-                    <span class="text-gray-300">Status do Backend:</span>
-                    <span id="backend-status" class="font-bold text-yellow-500 flex items-center gap-2">
-                        <i class="fas fa-circle-notch animate-spin"></i> Testando...
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div id="owner-panel" class="hidden admin-panel-container fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[99] p-4">
         <div class="admin-panel-content bg-gray-900 p-6 rounded-2xl border-2 border-red-700 shadow-2xl max-w-7xl w-full overflow-y-auto">
@@ -1559,6 +1510,7 @@
                 </div>
                 <button onclick="document.getElementById('owner-panel').classList.add('hidden')" class="text-gray-400 hover:text-white text-3xl">&times;</button>
             </div>
+            
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
                 <div class="lg:col-span-1 space-y-6">
                     <div class="bg-gray-800 p-4 rounded-lg">
@@ -1579,6 +1531,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="lg:col-span-2 space-y-6">
                     <div class="bg-gray-800 p-4 rounded-lg h-full">
                         <h3 id="ceo-withdrawals-title" class="font-bold text-xl mb-4 text-red-400"><i class="fas fa-hourglass-half mr-2"></i>Saques Pendentes</h3>
@@ -1586,6 +1539,7 @@
                             </div>
                     </div>
                 </div>
+
                 <div class="lg:col-span-1 space-y-6">
                     <div class="bg-gray-800 p-4 rounded-lg">
                         <h3 class="font-bold text-xl mb-4 text-red-400"><i class="fas fa-gift mr-2"></i>Gerar Bônus</h3>
@@ -1605,6 +1559,7 @@
             </div>
         </div>
     </div>
+
     <div id="admin-panel" class="hidden admin-panel-container fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[99] p-4">
         <div class="admin-panel-content bg-gray-900 p-6 rounded-lg border border-blue-600 max-w-4xl w-full overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
@@ -1635,24 +1590,77 @@
             </div>
         </div>
     </div>
-<script>
+    <script>
         // ================================================================== //
-        // START: CONFIGURAÇÃO DO BACKEND E AUTENTICAÇÃO                    //
+        // START: LÓGICA DO NOVO SISTEMA DE AUTENTICAÇÃO                    //
         // ================================================================== //
+        
+        // Database simulation using localStorage
+        const usersDB = {
+            getUsers: () => {
+                const users = localStorage.getItem('reivbet_users_v2'); // Use a new key for the new structure
+                return users ? JSON.parse(users) : {};
+            },
+            saveUsers: (users) => {
+                localStorage.setItem('reivbet_users_v2', JSON.stringify(users));
+            },
+            // Find user by any unique identifier (cpf or email)
+            findUser: (identifier) => {
+                const users = usersDB.getUsers();
+                return Object.values(users).find(u => u.cpf === identifier || u.email === identifier) || null;
+            },
+            // Create a new, verified user
+            createUser: (userData) => {
+                const users = usersDB.getUsers();
+                if (usersDB.findUser(userData.cpf)) {
+                    return { error: 'Este CPF já está em uso.' };
+                }
+                if (usersDB.findUser(userData.email)) {
+                    return { error: 'Este E-mail já está em uso.' };
+                }
+                
+                // Using cpf as the primary key
+                users[userData.cpf] = {
+                    ...userData,
+                    password: btoa(userData.password), // Basic encoding as requested
+                    balance: 0,
+                    verified: true, // Users are now verified by default
+                    createdAt: new Date().toISOString(),
+                    stats: {}
+                };
+                
+                usersDB.saveUsers(users);
+                return { user: users[userData.cpf] };
+            },
+            // Update any user data
+            updateUser: (cpf, data) => {
+                const users = usersDB.getUsers();
+                if (!users[cpf]) {
+                    return { error: 'Usuário não encontrado' };
+                }
+                
+                users[cpf] = { ...users[cpf], ...data };
+                usersDB.saveUsers(users);
+                return { user: users[cpf] };
+            }
+        };
 
-        const BACKEND_URL = 'https://backend-reivbet.onrender.com';
+        // Current user session
         let currentUser = null;
 
         // DOM Elements for Auth
         const loginScreen = document.getElementById('login-screen');
         const mainApp = document.getElementById('main-app');
+        
         const loginForm = document.getElementById('login-form');
         const registerForm = document.getElementById('register-form');
+
         const showRegisterBtn = document.getElementById('show-register');
         const showLoginBtn = document.getElementById('show-login');
+
         const authErrorMessage = document.getElementById('auth-error-message');
 
-        // --- Funções de Validação (sem alteração) ---
+        // Validation Helper Functions
         const validateCPF = (cpf) => {
             cpf = cpf.replace(/[^\d]+/g, '');
             if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
@@ -1668,7 +1676,9 @@
             if (remainder !== parseInt(cpf.substring(10, 11))) return false;
             return true;
         };
+
         const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
         const isOver18 = (birthdate) => {
             const today = new Date();
             const birthDate = new Date(birthdate);
@@ -1679,6 +1689,8 @@
             }
             return age >= 18;
         };
+        
+        // --- Form utility to show/hide errors ---
         const setFieldError = (input, message) => {
             const errorDiv = input.nextElementSibling;
             if (message) {
@@ -1694,9 +1706,11 @@
             authErrorMessage.textContent = message;
             authErrorMessage.classList.remove('hidden');
         }
-        const hideAuthError = () => { authErrorMessage.classList.add('hidden'); }
+        const hideAuthError = () => {
+             authErrorMessage.classList.add('hidden');
+        }
 
-        // --- Máscara de CPF ---
+        // --- CPF Input Mask ---
         const cpfInput = document.getElementById('reg-cpf');
         cpfInput.addEventListener('input', (e) => {
             let value = e.target.value.replace(/\D/g, '');
@@ -1706,7 +1720,7 @@
             e.target.value = value;
         });
 
-        // --- Gerenciamento da Tela de Auth ---
+        // Auth View Management
         const showAuthView = (view) => {
             hideAuthError();
             loginForm.classList.add('hidden');
@@ -1714,58 +1728,47 @@
             if (view === 'login') loginForm.classList.remove('hidden');
             if (view === 'register') registerForm.classList.remove('hidden');
         };
+
         showRegisterBtn.addEventListener('click', () => showAuthView('register'));
         showLoginBtn.addEventListener('click', () => showAuthView('login'));
-
-        // --- Lógica de Login (MODIFICADA) ---
-        loginForm.addEventListener('submit', async (e) => {
+        
+        // --- Login Logic ---
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             hideAuthError();
             const identifier = document.getElementById('login-identifier').value.trim();
             const password = document.getElementById('login-password').value;
-            const button = e.target.querySelector('button[type="submit"]');
-            button.disabled = true;
-            button.textContent = 'Entrando...';
 
-            try {
-                const response = await fetch(`${BACKEND_URL}/auth/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ identifier, password })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Erro ao fazer login.');
-                }
-
-                startUserSession(data.user, data.token);
-
-            } catch (error) {
-                showAuthError(error.message);
-            } finally {
-                button.disabled = false;
-                button.textContent = 'Entrar';
+            const user = usersDB.findUser(identifier);
+            if (!user) {
+                return showAuthError('Usuário não encontrado.');
             }
+            if (user.password !== btoa(password)) {
+                 return showAuthError('Senha incorreta.');
+            }
+            
+            // Login successful
+            startUserSession(user);
         });
 
-        // --- Lógica de Registro (MODIFICADA) ---
-        registerForm.addEventListener('submit', async (e) => {
+        // --- Registration Logic ---
+        registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
             hideAuthError();
             let isValid = true;
-
+            
+            // Get and validate inputs
             const fullNameInput = document.getElementById('reg-fullname');
             const cpfInput = document.getElementById('reg-cpf');
             const emailInput = document.getElementById('reg-email');
             const birthdateInput = document.getElementById('reg-birthdate');
             const passwordInput = document.getElementById('reg-password');
             const termsInput = document.getElementById('reg-terms');
-            const button = e.target.querySelector('button[type="submit"]');
 
+            // Reset errors
             [fullNameInput, cpfInput, emailInput, birthdateInput, passwordInput].forEach(i => setFieldError(i, null));
-
+            
+            // Validation checks
             if (!fullNameInput.value.trim()) { setFieldError(fullNameInput, 'Nome completo é obrigatório.'); isValid = false; }
             if (!validateCPF(cpfInput.value)) { setFieldError(cpfInput, 'CPF inválido.'); isValid = false; }
             if (!validateEmail(emailInput.value)) { setFieldError(emailInput, 'Formato de e-mail inválido.'); isValid = false; }
@@ -1775,93 +1778,75 @@
 
             if (!isValid) return;
 
-            button.disabled = true;
-            button.textContent = 'Cadastrando...';
-
             const userData = {
                 fullName: fullNameInput.value.trim(),
                 cpf: cpfInput.value.replace(/\D/g, ''),
                 email: emailInput.value.trim(),
                 birthdate: birthdateInput.value,
-                password: passwordInput.value
+                password: passwordInput.value,
+                username: fullNameInput.value.trim().split(' ')[0] // Use first name as username
             };
+            
+            const { user, error } = usersDB.createUser(userData);
 
-            try {
-                const response = await fetch(`${BACKEND_URL}/auth/register`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(userData)
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Erro ao criar conta.');
-                }
-
-                showNotification('Cadastro realizado com sucesso! Bem-vindo!', 'green');
-                startUserSession(data.user, data.token);
-
-            } catch (error) {
-                showAuthError(error.message);
-            } finally {
-                button.disabled = false;
-                button.textContent = 'Cadastrar';
+            if (error) {
+                return showAuthError(error);
             }
+            
+            // Registration successful, start session immediately
+            showNotification('Cadastro realizado com sucesso! Bem-vindo!', 'green');
+            startUserSession(user);
         });
-
-        // --- Gerenciamento de Sessão (MODIFICADO) ---
-        function startUserSession(user, token) {
+        
+        // --- Session Management ---
+        function startUserSession(user) {
             currentUser = user;
-            localStorage.setItem('reivbet_token', token); // Salva o token
-
+            localStorage.setItem('reivbet_current_user_v2', JSON.stringify(user));
+            
             loginScreen.classList.add('hidden');
             mainApp.classList.remove('hidden');
-
-            updateUIWithUserData();
+            
+            // --- CÓDIGO EXISTENTE PARA INICIAR O APP ---
+            updateUserData();
             startRandomNotifications();
             updateUserLocationTime();
-
+            
+            if (!currentUser.stats) {
+                currentUser.stats = {};
+                usersDB.updateUser(currentUser.cpf, { stats: currentUser.stats });
+            }
             sessionStorage.setItem('reivbet_initial_balance', currentUser.balance);
             initializeStatsPanel();
             document.getElementById('toggle-stats-btn').classList.remove('hidden');
+
+            welcomeUsername.textContent = currentUser.username;
             homeTab.click();
         }
 
-        async function checkLoggedInUser() {
-            const token = localStorage.getItem('reivbet_token');
-            if (token) {
-                try {
-                    // Tenta validar o token e buscar os dados do usuário
-                    const response = await fetch(`${BACKEND_URL}/auth/me`, {
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Sessão expirada.');
-                    }
-                    const data = await response.json();
-                    startUserSession(data.user, token);
-
-                } catch (error) {
-                    console.error(error.message);
-                    logout();
+        function checkLoggedInUser() {
+            const userData = localStorage.getItem('reivbet_current_user_v2');
+            if (userData) {
+                const user = JSON.parse(userData);
+                // Re-validate user from DB in case data is stale
+                const dbUser = usersDB.findUser(user.cpf);
+                if (dbUser) {
+                    startUserSession(dbUser);
                 }
             }
-            initializeCorraKaioGame();
+            // --- INICIALIZAÇÕES GLOBAIS EXISTENTES ---
             createRouletteWheel();
+            initializeCorraKaioGame();
         }
 
         function logout() {
             currentUser = null;
-            localStorage.removeItem('reivbet_token');
+            localStorage.removeItem('reivbet_current_user_v2');
             sessionStorage.removeItem('reivbet_initial_balance');
-
             mainApp.classList.add('hidden');
             loginScreen.classList.remove('hidden');
+            
             document.getElementById('stats-panel').classList.add('hidden');
             document.getElementById('toggle-stats-btn').classList.add('hidden');
-            document.getElementById('ceo-panel').classList.add('hidden'); // Esconde o painel do CEO ao sair
 
             loginForm.reset();
             registerForm.reset();
@@ -1869,18 +1854,17 @@
         }
 
         // ================================================================== //
-        // END: CONFIGURAÇÃO DO BACKEND E AUTENTICAÇÃO                      //
+        // END: LÓGICA DO NOVO SISTEMA DE AUTENTICAÇÃO                        //
         // ================================================================== //
 
 
         // --- O RESTANTE DO SEU CÓDIGO JAVASCRIPT PERMANECE AQUI ---
+        // (Sem alterações, apenas as funções de auth acima foram substituídas/adicionadas)
 
         const betCooldowns = {};
         const BET_COOLDOWN_MS = 2000;
         let activeGameForStats = 'Nenhum';
-
-        // O sistema de bônus agora deve ser gerenciado pelo backend.
-        // A lógica de resgate foi mantida, mas a geração de códigos agora está no painel do dono antigo.
+        
         let generatedBonusCodes = JSON.parse(localStorage.getItem('reivbet_bonus_codes_v2') || '[]');
 
         // DOM Elements (rest of the app)
@@ -1892,17 +1876,17 @@
         const casinoTab = document.getElementById('casino-tab');
         const gamesTab = document.getElementById('games-tab');
         const exclusiveTab = document.getElementById('exclusive-tab');
-        const vantagensTab = document.getElementById('vantagens-tab');
+        const vantagensTab = document.getElementById('vantagens-tab'); 
         const affiliateLink = document.getElementById('affiliate-link');
         const welcomeSection = document.getElementById('welcome-section');
         const casinoSection = document.getElementById('casino-section');
         const gamesSection = document.getElementById('games-section');
         const exclusiveSection = document.getElementById('exclusive-section');
         const vantagensSection = document.getElementById('vantagens-section');
-        const affiliateSection = document.getElementById('affiliate-section');
+        const affiliateSection = document.getElementById('affiliate-section'); 
         const startPlayingBtn = document.getElementById('start-playing-btn');
 
-
+        
         // Navigation Helper Function
         function handleTabClick(activeTab, activeSection) {
             const tabs = [homeTab, casinoTab, gamesTab, exclusiveTab, vantagensTab, affiliateLink];
@@ -1914,7 +1898,7 @@
             if(activeTab) activeTab.classList.add('bg-gray-800', 'text-red-500');
             activeSection.classList.remove('hidden');
         }
-
+        
         // Navigation Handler for Affiliate Section
         affiliateLink.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1943,14 +1927,12 @@
             logout();
         });
 
-        // Update user data in the UI (MODIFICADO)
-        function updateUIWithUserData(isWin = null) {
+        // Update user data in the UI
+        function updateUserData(isWin = null) {
             if (!currentUser) return;
-
-            // O `username` agora vem do objeto `currentUser.fullName`
-            currentUser.username = currentUser.fullName.split(' ')[0];
+            
+            // MODIFICATION: Use the new user object structure
             welcomeUsername.textContent = currentUser.username;
-
             const formattedBalance = `R$ ${currentUser.balance.toFixed(2)}`;
             const balanceElements = [userBalance, welcomeBalance, document.getElementById('withdraw-balance-info')];
 
@@ -1958,7 +1940,7 @@
                 if(el) {
                     el.textContent = formattedBalance;
                     el.classList.remove('balance-updated-win', 'balance-updated-loss', 'text-green-500');
-
+                    
                     if (isWin === true) {
                         el.classList.add('balance-updated-win');
                         setTimeout(() => el.classList.remove('balance-updated-win'), 500);
@@ -1975,39 +1957,15 @@
             }
         }
 
-        // ATENÇÃO: Esta função agora deve chamar o backend.
-        // A lógica local foi mantida para que o site não quebre.
-        async function updateUserBalance(newBalance, isWin = null) {
+        // Update user balance (call this whenever balance changes)
+        function updateUserBalance(newBalance, isWin = null) {
             if (!currentUser) return;
-
-            // TODO: Substitua a lógica abaixo por uma chamada ao seu backend para atualizar o saldo.
-            // Exemplo:
-            /*
-            try {
-                const token = localStorage.getItem('reivbet_token');
-                const response = await fetch(`${BACKEND_URL}/balance/update`, { // Use a rota correta
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ newBalance: newBalance })
-                });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.message);
-                currentUser.balance = data.newBalance; // Atualiza o saldo com a resposta do backend
-                updateUIWithUserData(isWin);
-            } catch (error) {
-                console.error("Erro ao atualizar saldo:", error);
-                showNotification("Não foi possível atualizar o saldo.", "red");
-            }
-            */
-
-            // Lógica antiga mantida para fins de demonstração:
+            
             currentUser.balance = newBalance;
-            updateUIWithUserData(isWin);
+            localStorage.setItem('reivbet_current_user_v2', JSON.stringify(currentUser));
+            usersDB.updateUser(currentUser.cpf, { balance: newBalance });
+            updateUserData(isWin);
         }
-
 
         // Sample win messages
         const winMessages = [
@@ -2036,10 +1994,10 @@
             const notification = document.createElement('div');
             notification.className = `floating-notification bg-gray-900 border-l-4 border-${color}-500 px-4 py-2 rounded shadow-lg text-sm flex items-center`;
             notification.innerHTML = `<span class="mr-2">${message}</span>`;
-
+            
             const notificationsContainer = document.getElementById('notifications-container');
             notificationsContainer.appendChild(notification);
-
+            
             setTimeout(() => {
                 notification.style.opacity = '0';
                 notification.style.transition = 'opacity 1s';
@@ -2055,12 +2013,12 @@
             if(document.getElementById('stats-initial-balance')) {
                  document.getElementById('stats-initial-balance').textContent = `R$ ${parseFloat(initialBalance).toFixed(2)}`;
             }
-            updateStatsUI('Nenhum');
+            updateStatsUI('Nenhum'); 
         }
 
         function updateStats(gameName, didWin) {
             if (!currentUser) return;
-            if (!currentUser.stats) currentUser.stats = {};
+            
             if (!currentUser.stats[gameName]) {
                 currentUser.stats[gameName] = { wins: 0, losses: 0 };
             }
@@ -2071,22 +2029,21 @@
                 currentUser.stats[gameName].losses++;
             }
 
-            // TODO: Enviar estatísticas para o backend se necessário
-            updateStatsUI(gameName);
+            usersDB.updateUser(currentUser.cpf, { stats: currentUser.stats });
+            updateStatsUI(gameName); 
         }
 
         function updateStatsUI(gameName) {
             activeGameForStats = gameName;
             const statsPanel = document.getElementById('stats-panel');
             if (!statsPanel || !currentUser) return;
-            if (!currentUser.stats) currentUser.stats = {};
 
             const stats = currentUser.stats[gameName] || { wins: 0, losses: 0 };
             const wins = stats.wins;
             const losses = stats.losses;
             const totalGames = wins + losses;
             const winrate = totalGames > 0 ? (wins / totalGames) * 100 : 0;
-
+            
             document.getElementById('stats-game-name').textContent = gameName;
             document.getElementById('stats-total-bets').textContent = totalGames;
             document.getElementById('stats-wins').textContent = wins;
@@ -2163,7 +2120,7 @@
                     const iconSpan = document.createElement('span');
                     iconSpan.textContent = event.icon;
                     slice.appendChild(iconSpan);
-
+                    
                     eventWheel.appendChild(slice);
                 });
             }
@@ -2175,7 +2132,7 @@
                 document.querySelector(`.pilot-card[data-pilot-id='${pilotId}']`).classList.add('selected');
                 updateStatsUI('Corra Kaio');
             }
-
+            
             function spinEvent() {
                 const bet = parseFloat(betAmountInput.value);
                 if (gameState.isRacing || gameState.isSpinning) return;
@@ -2195,7 +2152,7 @@
                 gameState.isSpinning = true;
                 spinEventBtn.disabled = true;
                 finalRaceResult.classList.add('hidden');
-
+                
                 const winningIndex = Math.floor(Math.random() * events.length);
                 gameState.selectedEvent = events[winningIndex];
 
@@ -2212,7 +2169,7 @@
                     eventResult.textContent = `${gameState.selectedEvent.icon} ${gameState.selectedEvent.name}`;
                     eventResult.title = gameState.selectedEvent.description;
                     startRaceBtn.disabled = false;
-                }, 4000);
+                }, 4000); 
             }
 
             function startRace() {
@@ -2238,9 +2195,8 @@
                 startRaceBtn.disabled = true;
                 betCooldowns[gameName] = Date.now();
                 setTimeout(() => { if(!gameState.isRacing) startRaceBtn.disabled = false; }, BET_COOLDOWN_MS);
-
+                
                 gameState.isRacing = true;
-                // TODO: Chamar o backend para deduzir a aposta
                 updateUserBalance(currentUser.balance - bet, false);
                 setControlsState(true);
 
@@ -2251,14 +2207,14 @@
             }
 
             function runAnimation(betAmount, totalLaps) {
-                track.innerHTML = '';
-                track.appendChild(lapCounter);
+                track.innerHTML = ''; 
+                track.appendChild(lapCounter); 
 
                 const trackWidth = track.clientWidth;
                 const trackHeight = track.clientHeight;
-                const radiusX = trackWidth / 2 - 20;
-                const radiusY = trackHeight / 2 - 10;
-
+                const radiusX = trackWidth / 2 - 20; 
+                const radiusY = trackHeight / 2 - 10; 
+                
                 let penaltyTarget = null;
                 if(gameState.selectedEvent.name === '🐢 Penalidade') {
                     penaltyTarget = pilots[Math.floor(Math.random() * pilots.length)];
@@ -2269,13 +2225,13 @@
                     carElement.className = 'f1-car';
                     carElement.textContent = pilot.car;
                     track.appendChild(carElement);
-
-                    let baseSpeed = (Math.random() * 0.004 + 0.012);
+                    
+                    let baseSpeed = (Math.random() * 0.004 + 0.012); 
                     if(gameState.selectedEvent.name === '🎉 Kaio Buff' && pilot.name === 'Kaio Alves') {
-                        baseSpeed *= 1.15;
+                        baseSpeed *= 1.15; 
                     }
                     if(gameState.selectedEvent.name === '❄️ Clima Ruim') {
-                        baseSpeed *= 0.6;
+                        baseSpeed *= 0.6; 
                     }
 
                     return {
@@ -2288,7 +2244,7 @@
                         totalProgress: 0,
                     };
                 });
-
+                
                 function animate() {
                     let raceFinished = false;
                     cars.forEach(car => {
@@ -2299,12 +2255,12 @@
 
                         if (Math.random() > 0.98) car.speed += (Math.random() - 0.5) * 0.003;
                         car.speed = Math.max(car.baseSpeed * 0.8, Math.min(car.baseSpeed * 1.2, car.speed));
-
+                        
                         if(gameState.selectedEvent.name === '🔥 Turbo Final' && car.lapsCompleted >= totalLaps - 2) {
-                           car.speed = car.baseSpeed * 1.5;
+                           car.speed = car.baseSpeed * 1.5; 
                         }
                         if(gameState.selectedEvent.name === '🐢 Penalidade' && car.pilot.id === penaltyTarget.id && car.lapsCompleted < 2) {
-                            car.speed *= 0.7;
+                            car.speed *= 0.7; 
                         }
 
                         car.angle += car.speed;
@@ -2313,7 +2269,7 @@
 
                         const x = radiusX * Math.cos(car.angle) + (trackWidth / 2);
                         const y = radiusY * Math.sin(car.angle) + (trackHeight / 2);
-
+                        
                         car.element.style.left = `${x}px`;
                         car.element.style.top = `${y}px`;
                         car.element.style.transform = `translate(-50%, -50%) rotate(${car.angle * 180 / Math.PI + 90}deg)`;
@@ -2341,11 +2297,10 @@
                 finalRaceResult.classList.remove('hidden');
 
                 if (didWin) {
-                    let winnings = betAmount * 4;
+                    let winnings = betAmount * 4; 
                     if (gameState.selectedEvent.name === '🎯 Chance Dobro') {
                         winnings *= 2;
                     }
-                    // TODO: Chamar backend para adicionar o prêmio
                     updateUserBalance(currentUser.balance + winnings, true);
                     finalRaceResult.innerHTML = `✅ Parabéns! Seu piloto <strong>${winner.name}</strong> venceu! Você ganhou R$${winnings.toFixed(2)}.`;
                     finalRaceResult.className = 'win';
@@ -2353,11 +2308,11 @@
                     finalRaceResult.innerHTML = `❌ Você perdeu! O vencedor foi <strong>${winner.name}</strong>.`;
                     finalRaceResult.className = 'loss';
                 }
-
+                
                 updateStats('Corra Kaio', didWin);
                 setTimeout(resetGame, 4000);
             }
-
+            
             function resetGame() {
                 gameState.isRacing = false;
                 gameState.selectedEvent = null;
@@ -2366,7 +2321,7 @@
                 if(finalRaceResult) finalRaceResult.classList.add('hidden');
                 setControlsState(false);
             }
-
+            
             function setControlsState(isGameActive) {
                 if(spinEventBtn) spinEventBtn.disabled = isGameActive;
                 if(startRaceBtn) startRaceBtn.disabled = true;
@@ -2379,7 +2334,7 @@
             renderEventRoulette();
             resetGame();
             selectPilot(1);
-
+            
             if(spinEventBtn) spinEventBtn.addEventListener('click', spinEvent);
             if(startRaceBtn) startRaceBtn.addEventListener('click', startRace);
         }
@@ -2424,7 +2379,7 @@
             }
 
             const bet = parseFloat(avBetAmountInput.value);
-
+            
             if (isNaN(bet) || bet < aviatorConfig.minBet) {
                 showNotification(`O valor mínimo para aposta é R$${aviatorConfig.minBet.toFixed(2)}`, 'red');
                 return;
@@ -2433,31 +2388,30 @@
                 showNotification('Saldo insuficiente para esta aposta', 'red');
                 return;
             }
-
+            
             updateStatsUI(gameName);
             console.log(`[${gameName}] New Game Seed:`, Math.random());
             avStartGameBtn.disabled = true;
             betCooldowns[gameName] = Date.now();
-
-            // TODO: Chamar backend para debitar aposta
+            
             updateUserBalance(currentUser.balance - bet, false);
-
+            
             aviatorGame = {
                 active: true, betAmount: bet, multiplier: 1.00, crashPoint: calculateCrashPoint(),
                 animationFrame: null, startTime: Date.now(), duration: 0
             };
-
+            
             avStatusDisplay.textContent = 'O avião está decolando...';
             avStartGameBtn.classList.add('hidden');
             avCashOutBtn.classList.remove('hidden');
             avCashOutBtn.disabled = false;
             avMultiplierDisplay.textContent = '1.00x';
             avPotentialWinDisplay.textContent = `R$ ${bet.toFixed(2)}`;
-
+            
             avPlane.style.transform = 'translateX(0) translateY(0) rotate(0deg)';
             avTrail.style.width = '0';
             avTrail.style.backgroundColor = 'red';
-
+            
             aviatorGame.startTime = Date.now();
             aviatorGame.animationFrame = requestAnimationFrame(updateAviatorGame);
         }
@@ -2470,44 +2424,44 @@
 
         function updateAviatorGame() {
             if (!aviatorGame.active) return;
-
+            
             const currentTime = Date.now();
             aviatorGame.duration = (currentTime - aviatorGame.startTime) / 1000;
-
+            
             aviatorGame.multiplier = 1 + (aviatorGame.duration * 0.5) + Math.pow(aviatorGame.duration, 2) * 0.1;
-
+            
             avMultiplierDisplay.textContent = `${Math.min(aviatorGame.multiplier, 999).toFixed(2)}x`;
             avPotentialWinDisplay.textContent = `R$ ${(aviatorGame.betAmount * aviatorGame.multiplier).toFixed(2)}`;
-
+            
             const progress = Math.min(aviatorGame.multiplier / aviatorGame.crashPoint, 1);
             const xPos = progress * 200;
             const yPos = -Math.sin(progress * Math.PI) * 50;
-
+            
             avPlane.style.transform = `translateX(${xPos}px) translateY(${yPos}px) rotate(${progress * 10}deg)`;
             avTrail.style.width = `${xPos}px`;
             avTrail.style.height = '2px';
             avTrail.style.transform = `translateY(${yPos + 25}px)`;
-
+            
             if (aviatorGame.multiplier >= aviatorGame.crashPoint) {
                 crashAviator();
                 return;
             }
-
+            
             aviatorGame.animationFrame = requestAnimationFrame(updateAviatorGame);
         }
 
         function crashAviator() {
             if (!aviatorGame.active) return;
-
+            
             cancelAnimationFrame(aviatorGame.animationFrame);
             aviatorGame.active = false;
-
+            
             avPlane.style.transform += ' rotate(180deg)';
             avTrail.style.backgroundColor = 'red';
-
+            
             avStatusDisplay.textContent = `O avião caiu em ${aviatorGame.crashPoint.toFixed(2)}x!`;
             showNotification(`O avião caiu em ${aviatorGame.crashPoint.toFixed(2)}x!`, 'red');
-
+            
             updateStats('Aviador Reiv', false);
 
             setTimeout(() => {
@@ -2523,23 +2477,21 @@
 
         function cashOutAviator() {
             if (!aviatorGame.active) return;
-
+            
             cancelAnimationFrame(aviatorGame.animationFrame);
             const winAmount = aviatorGame.betAmount * aviatorGame.multiplier;
-
-            // TODO: Chamar backend para creditar o prêmio
             updateUserBalance(currentUser.balance + winAmount, true);
-
+            
             aviatorGame.active = false;
             avCashOutBtn.disabled = true;
             avStatusDisplay.textContent = `Você retirou em ${aviatorGame.multiplier.toFixed(2)}x! Ganhou R$${winAmount.toFixed(2)}`;
             showNotification(`Você ganhou R$${winAmount.toFixed(2)} no Aviador!`, 'green');
-
+            
             updateStats('Aviador Reiv', true);
 
             avPlane.classList.add('animate-pulse');
             avTrail.style.backgroundColor = 'green';
-
+            
             setTimeout(() => {
                 avPlane.style.transform = 'translateX(0) translateY(0) rotate(0deg)';
                 avPlane.classList.remove('animate-pulse');
@@ -2560,16 +2512,16 @@
                 showNotification('Aguarde um momento entre as apostas.', 'yellow');
                 return;
             }
-
+            
             const bet = parseFloat(document.getElementById('dice-bet-amount').value);
             const chosenNumber = parseInt(document.getElementById('dice-number').value);
-
+            
             if (isNaN(bet) || bet < 1) {
-                showNotification('O valor mínimo para aposta é R$1,00', 'red');
+                alert('O valor mínimo para aposta é R$1,00');
                 return;
             }
             if (bet > currentUser.balance) {
-                showNotification('Saldo insuficiente para esta aposta', 'red');
+                alert('Saldo insuficiente para esta aposta');
                 return;
             }
 
@@ -2579,12 +2531,11 @@
             betCooldowns[gameName] = Date.now();
             setTimeout(() => { rollButton.disabled = false; }, BET_COOLDOWN_MS);
 
-            // TODO: Chamar backend para debitar aposta
             updateUserBalance(currentUser.balance - bet, false);
-
+            
             document.getElementById('dice-display').innerHTML = '<i class="fas fa-dice-d6 text-gray-600 animate-spin"></i>';
             document.getElementById('dice-status').textContent = 'Girando...';
-
+            
             setTimeout(() => {
                 const result = Math.floor(Math.random() * 6) + 1;
                 document.getElementById('dice-display').innerHTML = `<i class="fas fa-dice-${['one', 'two', 'three', 'four', 'five', 'six'][result - 1]} text-red-500"></i>`;
@@ -2592,7 +2543,6 @@
 
                 if (didWin) {
                     const winAmount = bet * 5;
-                    // TODO: Chamar backend para creditar prêmio
                     updateUserBalance(currentUser.balance + winAmount, true);
                     document.getElementById('dice-result').textContent = `Você acertou! Ganhou R$${winAmount.toFixed(2)}`;
                     document.getElementById('dice-result').className = 'text-xl font-bold text-green-500';
@@ -2601,7 +2551,7 @@
                     document.getElementById('dice-result').textContent = `Você errou! Perdeu R$${bet.toFixed(2)}`;
                     document.getElementById('dice-result').className = 'text-xl font-bold text-red-500';
                 }
-
+                
                 updateStats(gameName, didWin);
                 document.getElementById('dice-status').textContent = `O dado caiu no número ${result}`;
             }, 1500);
@@ -2641,20 +2591,19 @@
                 return;
             }
             if (slotGame.spinning) return;
-
+            
             updateStatsUI(gameName);
             console.log(`[${gameName}] New Game Seed:`, Math.random());
 
             slotGame.spinning = true;
             slotGame.betAmount = bet;
-            // TODO: Chamar backend para debitar aposta
             updateUserBalance(currentUser.balance - bet, false);
-
+            
             document.getElementById('slot-current-bet').textContent = `R$ ${bet.toFixed(2)}`;
             document.getElementById('slot-win-amount').textContent = 'R$ 0,00';
             document.getElementById('slot-last-result').textContent = '-';
             document.getElementById('slot-status').textContent = 'Girando...';
-
+            
             const reels = document.querySelectorAll('.slot-reel');
             let finalSymbols = [];
             for(let i = 0; i < 3; i++) {
@@ -2678,7 +2627,7 @@
         function startAutoSpin() {
             const bet = parseFloat(document.getElementById('slot-bet-amount').value);
             const spins = parseInt(document.getElementById('auto-spin-count').value);
-
+            
             if (isNaN(bet) || bet < 1 || isNaN(spins) || spins < 1 || spins > 100) {
                 showNotification('Verifique o valor da aposta e o número de giros.', 'red');
                 return;
@@ -2687,18 +2636,18 @@
                 showNotification('Saldo insuficiente para todos os giros automáticos.', 'red');
                 return;
             }
-
+            
             slotGame.autoSpins = spins;
             document.getElementById('slot-spins-left').textContent = spins;
             document.getElementById('auto-spin-slot').classList.add('hidden');
             document.getElementById('stop-auto-spin').classList.remove('hidden');
-
+            
             function autoSpinLoop() {
                 if(slotGame.autoSpins > 0) {
                     spinSlot(true);
                     slotGame.autoSpins--;
                     document.getElementById('slot-spins-left').textContent = slotGame.autoSpins;
-                    slotGame.autoSpinInterval = setTimeout(autoSpinLoop, 2500);
+                    slotGame.autoSpinInterval = setTimeout(autoSpinLoop, 2500); 
                 } else {
                     stopAutoSpin();
                 }
@@ -2718,7 +2667,7 @@
             slotGame.spinning = false;
             let winMultiplier = 0;
             const key = result.join('');
-
+            
             if (result[0] === result[1] && result[1] === result[2]) {
                  winMultiplier = slotPaytable[key] || 0;
             } else {
@@ -2728,11 +2677,10 @@
                      winMultiplier = slotPaytable["7️⃣7️⃣💰"]; // Use a generic prize for mixed high symbols
                 }
             }
-
+            
             const didWin = winMultiplier > 0;
             if (didWin) {
                 const winAmount = slotGame.betAmount * winMultiplier;
-                // TODO: Chamar backend para creditar prêmio
                 updateUserBalance(currentUser.balance + winAmount, true);
                 document.getElementById('slot-win-amount').textContent = `R$ ${winAmount.toFixed(2)}`;
                 document.getElementById('slot-last-result').textContent = 'GANHOU!';
@@ -2744,7 +2692,7 @@
             }
             updateStats('Caça-Níqueis ReivBET', didWin);
         }
-
+        
         const rouletteNumbers = [
             { number: 0, color: 'green' }, { number: 32, color: 'red' }, { number: 15, color: 'black' }, { number: 19, color: 'red' }, { number: 4, color: 'black' },
             { number: 21, color: 'red' }, { number: 2, color: 'black' }, { number: 25, color: 'red' }, { number: 17, color: 'black' }, { number: 34, color: 'red' },
@@ -2758,7 +2706,7 @@
 
         let rouletteGame = { spinning: false, betAmount: 0, betType: null, currentRotation: 0 };
         const wheelElement = document.getElementById('roulette-wheel-graphic');
-
+        
         function createRouletteWheel() {
             if(!wheelElement) return;
             const segmentAngle = 360 / rouletteNumbers.length;
@@ -2783,14 +2731,14 @@
                     return;
                 }
                 if (rouletteGame.spinning) return;
-
+                
                 const bet = parseFloat(document.getElementById('roulette-bet-amount').value);
                 const betType = this.dataset.betType;
                 if (isNaN(bet) || bet < 1 || bet > currentUser.balance) {
                     showNotification(bet > currentUser.balance ? 'Saldo insuficiente' : 'Aposta mínima R$1.00', 'red');
                     return;
                 }
-
+                
                 updateStatsUI(gameName);
                 console.log(`[${gameName}] New Game Seed:`, Math.random());
                 betCooldowns[gameName] = Date.now();
@@ -2798,16 +2746,15 @@
                 rouletteGame.spinning = true;
                 rouletteGame.betAmount = bet;
                 rouletteGame.betType = betType;
-                // TODO: Chamar backend para debitar aposta
                 updateUserBalance(currentUser.balance - bet, false);
-
+                
                 document.getElementById('roulette-current-bet').textContent = `R$ ${bet.toFixed(2)}`;
                 document.getElementById('roulette-bet-type').textContent = this.textContent.trim();
                 document.getElementById('roulette-result').textContent = '-';
                 document.getElementById('roulette-win-amount').textContent = 'R$ 0,00';
                 document.getElementById('roulette-status').textContent = 'Girando roleta...';
                 document.querySelectorAll('.roulette-bet-btn').forEach(b => b.disabled = true);
-
+                
                 spinRoulette();
             });
         });
@@ -2817,29 +2764,28 @@
             const winningResult = rouletteNumbers[winningIndex];
 
             const segmentAngle = 360 / rouletteNumbers.length;
-            const targetAngle = 360 - (winningIndex * segmentAngle);
-            const extraRotations = 360 * 5;
+            const targetAngle = 360 - (winningIndex * segmentAngle); 
+            const extraRotations = 360 * 5; 
             const finalRotation = rouletteGame.currentRotation + extraRotations + targetAngle;
 
             wheelElement.style.transform = `rotate(${finalRotation}deg)`;
-            rouletteGame.currentRotation = finalRotation;
+            rouletteGame.currentRotation = finalRotation; 
 
             setTimeout(() => {
                 finishRouletteSpin(winningResult);
-            }, 5000);
+            }, 5000); 
         }
-
+        
         function finishRouletteSpin(result) {
             rouletteGame.spinning = false;
-
+            
             const resultText = `${result.number} ${result.color === 'red' ? 'Vermelho' : result.color === 'black' ? 'Preto' : 'Verde'}`;
             document.getElementById('roulette-result').textContent = resultText;
-
+            
             let hasWon = (rouletteGame.betType === result.color);
             if (hasWon) {
                 let winMultiplier = (result.color === 'green') ? 14 : 2;
                 const winAmount = rouletteGame.betAmount * winMultiplier;
-                // TODO: Chamar backend para creditar prêmio
                 updateUserBalance(currentUser.balance + winAmount, true);
                 document.getElementById('roulette-win-amount').textContent = `R$ ${winAmount.toFixed(2)}`;
                 document.getElementById('roulette-status').textContent = 'Você ganhou!';
@@ -2847,7 +2793,7 @@
                 document.getElementById('roulette-win-amount').textContent = 'R$ 0,00';
                 document.getElementById('roulette-status').textContent = 'Você perdeu';
             }
-
+            
             updateStats('Roleta ReivBET', hasWon);
             document.querySelectorAll('.roulette-bet-btn').forEach(b => b.disabled = false);
         }
@@ -2873,24 +2819,23 @@
                 showNotification(bet > currentUser.balance ? 'Saldo insuficiente' : 'Aposta mínima R$1.00', 'red');
                 return;
             }
-
+            
             updateStatsUI(gameName);
             console.log(`[${gameName}] New Game Seed:`, Math.random());
             startButton.disabled = true;
             betCooldowns[gameName] = Date.now();
 
             blackjackGame = { active: true, betAmount: bet, deck: createDeck(), dealerHand: [], playerHand: [], dealerScore: 0, playerScore: 0 };
-
-            // TODO: Chamar backend para debitar aposta
+            
             updateUserBalance(currentUser.balance - bet, false);
-
+            
             blackjackGame.playerHand.push(drawCard());
             blackjackGame.dealerHand.push(drawCard());
             blackjackGame.playerHand.push(drawCard());
             blackjackGame.dealerHand.push(drawCard());
-
+            
             updateBlackjackUI();
-
+            
             if (blackjackGame.playerScore === 21) {
                 setTimeout(standBlackjack, 1000);
             }
@@ -2950,10 +2895,9 @@
             else if (resultText === 'Empate!') { winAmount = blackjackGame.betAmount; }
 
             if (winAmount > 0) {
-                // TODO: Chamar backend para creditar prêmio/retornar aposta
                 updateUserBalance(currentUser.balance + winAmount, didWin);
             }
-
+            
             if (resultText !== 'Empate!') {
                 updateStats('Blackjack ReivBET', didWin);
             }
@@ -2964,7 +2908,7 @@
 
         function updateBlackjackUI(isFinished = false, resultText = '') {
             blackjackGame.playerScore = calculateScore(blackjackGame.playerHand);
-
+            
             const dealerCardsContainer = document.getElementById('dealer-cards-container');
             const playerCardsContainer = document.getElementById('player-cards-container');
             dealerCardsContainer.innerHTML = '';
@@ -2976,7 +2920,7 @@
                 c.textContent = card.value;
                 playerCardsContainer.appendChild(c);
             });
-
+             
             if(isFinished) {
                 blackjackGame.dealerScore = calculateScore(blackjackGame.dealerHand);
                 blackjackGame.dealerHand.forEach(card => {
@@ -3005,7 +2949,7 @@
         }
 
         const pokerHands = {
-            'ROYAL_FLUSH': 250, 'STRAIGHT_FLUSH': 50, 'FOUR_OF_A_KIND': 25, 'FULL_HOUSE': 9,
+            'ROYAL_FLUSH': 250, 'STRAIGHT_FLUSH': 50, 'FOUR_OF_A_KIND': 25, 'FULL_HOUSE': 9, 
             'FLUSH': 6, 'STRAIGHT': 4, 'THREE_OF_A_KIND': 3, 'TWO_PAIR': 2, 'JACKS_OR_BETTER': 1
         };
         let pokerGame = { active: false, betAmount: 0, deck: [], hand: [], heldCardsIndexes: [] };
@@ -3027,17 +2971,16 @@
                 showNotification(bet > currentUser.balance ? 'Saldo insuficiente' : 'Aposta mínima R$1.00', 'red');
                 return;
             }
-
+            
             updateStatsUI(gameName);
             console.log(`[${gameName}] New Game Seed:`, Math.random());
             betCooldowns[gameName] = Date.now();
 
             pokerGame = { active: true, betAmount: bet, deck: createPokerDeck(), hand: [], heldCardsIndexes: [] };
-            // TODO: Chamar backend para debitar aposta
             updateUserBalance(currentUser.balance - bet, false);
-
+            
             for (let i = 0; i < 5; i++) pokerGame.hand.push(pokerGame.deck.pop());
-
+            
             updatePokerUI();
             dealButton.classList.add('hidden');
             dealButton.disabled = true;
@@ -3046,7 +2989,7 @@
         }
 
         function createPokerDeck() {
-            const suits = ['♠', '♥', '♦', '♣'];
+            const suits = ['♠', '♥', '♦', '♣']; 
             const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
             let deck = [];
             for (const suit of suits) { for (const value of values) { deck.push({ suit, value }); } }
@@ -3056,37 +2999,36 @@
 
         function drawPoker() {
             if (!pokerGame.active) return;
-
+            
             for (let i = 0; i < 5; i++) {
                 if (!pokerGame.heldCardsIndexes.includes(i)) {
                     pokerGame.hand[i] = pokerGame.deck.pop();
                 }
             }
-
+            
             const handEvaluation = evaluatePokerHand(pokerGame.hand);
             const handRank = handEvaluation.name;
             const winMultiplier = pokerHands[handRank] || 0;
             const didWin = winMultiplier > 0;
-
+            
             if (didWin) {
                 const winAmount = pokerGame.betAmount * winMultiplier;
-                // TODO: Chamar backend para creditar prêmio
                 updateUserBalance(currentUser.balance + winAmount, true);
                 updatePokerUI(true, handRank, winAmount, handEvaluation.highlightedIndexes);
             } else {
                  updatePokerUI(true, handRank, 0, handEvaluation.highlightedIndexes);
             }
-
+            
             updateStats('Video Poker ReivBET', didWin);
             pokerGame.active = false;
-
+            
             const dealButton = document.getElementById('poker-deal');
             dealButton.classList.remove('hidden');
             dealButton.disabled = false;
             document.getElementById('poker-draw').classList.add('hidden');
             document.getElementById('poker-draw').disabled = true;
         }
-
+        
         function updatePokerUI(isFinished = false, handRank = 'NONE', winAmount = 0, highlightedIndexes = []) {
             document.getElementById('poker-current-bet').textContent = `R$ ${pokerGame.betAmount.toFixed(2)}`;
             document.getElementById('poker-status').textContent = isFinished ? 'Fim do Jogo' : 'Segure as cartas desejadas';
@@ -3095,16 +3037,16 @@
 
             const pokerHandEl = document.querySelector('.poker-hand');
             pokerHandEl.innerHTML = '';
-
+            
             pokerGame.hand.forEach((card, index) => {
                 const cardEl = document.createElement('div');
                 const isHeld = pokerGame.heldCardsIndexes.includes(index);
                 const isHighlighted = highlightedIndexes.includes(index);
-
+                
                 let cardClasses = 'card bg-white rounded-md flex items-center justify-center font-bold text-xl transition-all duration-200';
                 cardClasses += (card.suit === '♥' || card.suit === '♦') ? ' text-red-600' : ' text-black';
                 cardClasses += pokerGame.active ? ' cursor-pointer' : ' cursor-default';
-
+                
                 if (isFinished && isHighlighted) {
                      cardClasses += ' border-4 border-green-500 scale-105';
                 } else if (isHeld) {
@@ -3112,10 +3054,10 @@
                 } else {
                     cardClasses += ' border-4 border-transparent';
                 }
-
+                
                 cardEl.className = cardClasses;
                 cardEl.textContent = `${card.value}${card.suit}`;
-
+                
                 cardEl.addEventListener('click', () => {
                     if (pokerGame.active) {
                         const idx = pokerGame.heldCardsIndexes.indexOf(index);
@@ -3139,7 +3081,7 @@
             const counts = Object.values(valueCounts).sort((a,b) => b-a);
             const isFlush = new Set(suits).size === 1;
             const isStraight = values.every((v, i) => i === 0 || cardOrder.indexOf(v) === cardOrder.indexOf(values[i-1]) + 1) || JSON.stringify(values.map(v=>cardOrder.indexOf(v)).sort((a,b)=>a-b)) === JSON.stringify([0,1,2,3,12]);
-
+            
             function getIndexesForValue(val) {
                 const targetValue = val === 'T' ? '10' : val;
                 return hand.map((card, i) => card.value === targetValue ? i : -1).filter(i => i !== -1);
@@ -3198,25 +3140,24 @@
             const bet = parseFloat(document.getElementById('bet-amount').value);
             const mines = parseInt(document.getElementById('mines-count').value);
             if (isNaN(bet) || bet < 1 || bet > currentUser.balance) {
-                showNotification(bet > currentUser.balance ? 'Saldo insuficiente' : 'Aposta mínima de R$1,00', 'red');
+                alert(bet > currentUser.balance ? 'Saldo insuficiente' : 'Aposta mínima de R$1,00');
                 return;
             }
-
+            
             updateStatsUI(gameName);
             console.log(`[${gameName}] New Game Seed:`, Math.random());
             startButton.disabled = true;
             betCooldowns[gameName] = Date.now();
             setTimeout(() => { if (!minesGameState.active) startButton.disabled = false; }, BET_COOLDOWN_MS);
 
-            // TODO: Chamar backend para debitar aposta
             updateUserBalance(currentUser.balance - bet, false);
             minesGameState = { active: true, betAmount: bet, minesCount: mines, safeCellsClicked: 0, multiplier: minesMultiplierValues[mines], minesPositions: [], revealedCells: [] };
-
+            
             while (minesGameState.minesPositions.length < mines) {
                 const randomPos = Math.floor(Math.random() * 25);
                 if (!minesGameState.minesPositions.includes(randomPos)) minesGameState.minesPositions.push(randomPos);
             }
-
+            
             document.getElementById('current-bet').textContent = `R$ ${bet.toFixed(2)}`;
             document.getElementById('current-mines').textContent = mines;
             document.getElementById('safe-clicks').textContent = '0';
@@ -3236,7 +3177,7 @@
                 const cell = document.createElement('div');
                 cell.className = 'cell bg-gray-800 h-16 rounded flex items-center justify-center cursor-pointer font-bold text-xl border border-gray-700 hover:bg-gray-700';
                 cell.dataset.index = i;
-
+                
                 if (minesGameState.revealedCells.includes(i)) {
                     cell.innerHTML = minesGameState.minesPositions.includes(i) ? '<i class="fas fa-bomb text-red-500"></i>' : '💎';
                     cell.className = `cell h-16 rounded flex items-center justify-center font-bold text-xl border ${minesGameState.minesPositions.includes(i) ? 'bg-red-900 border-red-700' : 'bg-green-900 border-green-700'}`;
@@ -3250,7 +3191,7 @@
         function revealCell(index) {
             if (!minesGameState.active || minesGameState.revealedCells.includes(index)) return;
             minesGameState.revealedCells.push(index);
-
+            
             if (minesGameState.minesPositions.includes(index)) {
                 minesGameState.active = false;
                 document.getElementById('game-status').textContent = 'Você perdeu!';
@@ -3267,14 +3208,13 @@
                 document.getElementById('current-multiplier').textContent = `${minesGameState.multiplier.toFixed(2)}x`;
                 document.getElementById('potential-win').textContent = `R$ ${(minesGameState.betAmount * minesGameState.multiplier).toFixed(2)}`;
                 renderGameBoard();
-                if (minesGameState.safeCellsClicked + minesGameState.minesCount === 25) cashOut(true);
+                if (minesGameState.revealedCells.length + minesGameState.minesCount === 25) cashOut(true);
             }
         }
 
         function cashOut(allRevealed) {
             if (!minesGameState.active) return;
             const winAmount = minesGameState.betAmount * minesGameState.multiplier;
-            // TODO: Chamar backend para creditar prêmio
             updateUserBalance(currentUser.balance + winAmount, true);
             minesGameState.active = false;
             document.getElementById('game-status').textContent = allRevealed ? 'Todos revelados!' : 'Você retirou!';
@@ -3335,8 +3275,8 @@
                 copyBtn.innerHTML = originalIcon;
             }, 2000);
         });
-
-        async function handleDeposit() {
+        
+        function handleDeposit() {
             const amountInput = document.getElementById('deposit-amount');
             const amount = parseFloat(amountInput.value);
 
@@ -3344,36 +3284,12 @@
                 showNotification('O valor mínimo de depósito é R$10,00.', 'red');
                 return;
             }
-
-            // TODO: A lógica de depósito real deve ser feita aqui, chamando o backend.
-            // Exemplo de chamada para a rota /pix
-            try {
-                const token = localStorage.getItem('reivbet_token');
-                const response = await fetch(`${BACKEND_URL}/pix`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                     },
-                    body: JSON.stringify({ amount: amount })
-                });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.message || "Erro ao processar depósito");
-
-                // O ideal é que o backend confirme o PIX e atualize o saldo.
-                // Aqui, simulamos a atualização do saldo para fins de UI.
-                currentUser.balance = data.newBalance; // Supondo que o backend retorne o novo saldo
-                updateUIWithUserData(true);
-
-                document.getElementById('deposit-modal').classList.add('hidden');
-                amountInput.value = '';
-                showNotification(`Depósito de R$${amount.toFixed(2)} confirmado! O saldo já está na sua conta.`, 'green');
-                showReceipt('Depósito', amount, 'Aprovado');
-
-            } catch (error) {
-                console.error("Erro no depósito:", error);
-                showNotification(error.message, 'red');
-            }
+            updateUserBalance(currentUser.balance + amount, true);
+            document.getElementById('deposit-modal').classList.add('hidden');
+            amountInput.value = ''; 
+            showNotification(`Depósito de R$${amount.toFixed(2)} confirmado! O saldo já está na sua conta.`, 'green');
+            
+            showReceipt('Depósito', amount, 'Aprovado');
         }
         document.getElementById('confirm-deposit').addEventListener('click', handleDeposit);
 
@@ -3386,7 +3302,7 @@
         document.getElementById('close-withdraw-modal').addEventListener('click', () => {
             document.getElementById('withdraw-modal').classList.add('hidden');
         });
-
+        
         function handleWithdraw() {
             const amountInput = document.getElementById('withdraw-amount');
             const amount = parseFloat(amountInput.value);
@@ -3406,14 +3322,10 @@
                 return;
             }
 
-            // TODO: Chamar o backend para processar o saque.
-            // O backend deve decidir se o saque é aprovado ou pendente.
-            // A lógica local abaixo é apenas para demonstração.
-
-            // TODO: Debitar o valor do saldo via backend
             updateUserBalance(currentUser.balance - amount, false);
-
-            const isPending = amount > 500 || Math.random() < 0.1; // Lógica de simulação
+            
+            // NEW: Mark as pending if > 500 or by random chance (simulates processing error)
+            const isPending = amount > 500 || Math.random() < 0.1;
 
             if (isPending) {
                 const withdrawalRequest = {
@@ -3430,7 +3342,9 @@
                 localStorage.setItem('reivbet_pending_withdrawals', JSON.stringify(existingRequests));
                 showNotification(`Sua solicitação de saque de R$${amount.toFixed(2)} foi enviada para análise.`, 'yellow');
                 showReceipt('Saque (Solicitação)', amount, 'Pendente');
+                updatePanelNotifications();
             } else {
+                // Simulate automatic approval
                 showNotification(`Saque de R$${amount.toFixed(2)} aprovado e enviado para a chave PIX.`, 'green');
                 showReceipt('Saque (Automático)', amount, 'Aprovado');
             }
@@ -3457,7 +3371,7 @@
                 toggleBtn.innerHTML = 'Música Desligada 🎵';
             }
         });
-
+        
         document.body.addEventListener('click', () => {
             if (!bgMusic.paused && toggleBtn.innerHTML.includes('Ligada')) {
                  bgMusic.play().catch(e => {});
@@ -3478,7 +3392,7 @@
             document.getElementById('receipt-amount').textContent = `R$ ${amount.toFixed(2)}`;
             const statusEl = document.getElementById('receipt-status');
             statusEl.textContent = status;
-
+            
             statusEl.className = 'font-bold';
             if(status === 'Aprovado') statusEl.classList.add('text-green-500');
             else if(status === 'Rejeitado') statusEl.classList.add('text-red-500');
@@ -3546,93 +3460,17 @@
                 statsPanel.classList.toggle('hidden');
             });
         }
-
+        
         // ================================================================== //
-        // START: LÓGICA DO NOVO SISTEMA DE PAINEL CEO                        //
+        // START: LÓGICA DO NOVO SISTEMA DE PAINEL ADMIN E DONO               //
         // ================================================================== //
-        const ceoPanel = document.getElementById('ceo-panel');
-        const ceoInjectBtn = document.getElementById('ceo-inject-btn');
-        const backendStatusEl = document.getElementById('backend-status');
-
-        // Atalho para abrir o painel do CEO
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'U') {
-                e.preventDefault();
-                ceoPanel.classList.toggle('hidden');
-                if (!ceoPanel.classList.contains('hidden')) {
-                    checkBackendStatus();
-                }
-            }
-        });
-
-        // Função para testar o status do backend
-        async function checkBackendStatus() {
-            try {
-                const response = await fetch(BACKEND_URL);
-                if (response.ok) {
-                    backendStatusEl.innerHTML = '<i class="fas fa-check-circle text-green-500"></i> Online';
-                } else {
-                    throw new Error('Backend respondeu com erro');
-                }
-            } catch (error) {
-                backendStatusEl.innerHTML = '<i class="fas fa-exclamation-triangle text-red-500"></i> Offline';
-            }
-        }
-
-        // Função para injetar saldo
-        ceoInjectBtn.addEventListener('click', async () => {
-            const email = document.getElementById('ceo-email').value;
-            const valor = parseFloat(document.getElementById('ceo-amount').value);
-            const token = localStorage.getItem('reivbet_token');
-
-            if (!email || isNaN(valor) || valor <= 0) {
-                showNotification("Por favor, preencha o e-mail e um valor válido.", 'red');
-                return;
-            }
-
-            ceoInjectBtn.disabled = true;
-            ceoInjectBtn.textContent = 'Injetando...';
-
-            try {
-                const response = await fetch(`${BACKEND_URL}/admin/injetar-saldo`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}` // CEO precisa estar logado para ter token
-                    },
-                    body: JSON.stringify({ email, valor })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || "Erro ao injetar saldo.");
-                }
-
-                showNotification(`Sucesso! R$${valor.toFixed(2)} injetado na conta de ${email}.`, 'green');
-
-                // Se o saldo injetado for para o próprio usuário logado, atualiza a UI
-                if (currentUser && currentUser.email === email) {
-                    currentUser.balance = data.newBalance; // Backend deve retornar o novo saldo
-                    updateUIWithUserData(true);
-                }
-
-                document.getElementById('ceo-email').value = '';
-                document.getElementById('ceo-amount').value = '';
-
-            } catch (error) {
-                showNotification(error.message, 'red');
-            } finally {
-                ceoInjectBtn.disabled = false;
-                ceoInjectBtn.textContent = 'Injetar Saldo';
-            }
-        });
-
-
-        // A lógica de redeem code pode ser mantida, mas idealmente seria uma chamada de API.
+        const OWNER_EMAIL = 'prudencioguilherme7@gmail.com';
+        const OWNER_NAME = 'Guilherme Prudêncio De Melo';
+        
+        // NEW: Redeem code logic
         document.getElementById('redeem-code-btn').addEventListener('click', redeemCode);
+        
         function redeemCode() {
-            // TODO: Substituir por uma chamada de API para validar e resgatar o código.
             const input = document.getElementById('redeem-code-input');
             const messageEl = document.getElementById('redeem-message');
             const code = input.value.trim().toUpperCase();
@@ -3640,7 +3478,7 @@
             if (!code) { return; }
 
             const codeIndex = generatedBonusCodes.findIndex(c => c.code === code);
-
+            
             let message = '';
             let messageClass = '';
 
@@ -3650,7 +3488,7 @@
                     updateUserBalance(currentUser.balance + bonus.amount, true);
                     bonus.used = true; // Mark as used
                     localStorage.setItem('reivbet_bonus_codes_v2', JSON.stringify(generatedBonusCodes));
-
+                    
                     message = `✅ Sucesso! R$${bonus.amount.toFixed(2)} foram adicionados ao seu saldo.`;
                     messageClass = 'bg-green-800 text-green-300';
                     showNotification(message, 'green');
@@ -3662,7 +3500,7 @@
                 message = '❌ Código inválido ou expirado.';
                 messageClass = 'bg-red-800 text-red-300';
             }
-
+            
             messageEl.textContent = message;
             messageEl.className = `p-3 rounded-lg text-sm font-semibold ${messageClass} show`;
             input.value = '';
@@ -3672,33 +3510,293 @@
             }, 4000);
         }
 
-        // A lógica do painel de dono/admin antigo foi mantida para não quebrar o código existente.
-        // A nova funcionalidade de CEO é separada.
-        const OWNER_EMAIL = 'prudencioguilherme7@gmail.com';
-        const OWNER_NAME = 'Guilherme Prudêncio De Melo';
         document.addEventListener('keydown', (e) => {
             if (!currentUser) return;
+            
             const isOwner = currentUser.email === OWNER_EMAIL && currentUser.fullName === OWNER_NAME;
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') { // Atalho antigo para Painel Admin
+
+            // Atalho para Painel do Dono
+            if (e.ctrlKey && e.shiftKey && e.key === 'U') {
                 e.preventDefault();
-                 if (isOwner) {
-                    document.getElementById('admin-panel').classList.remove('hidden');
-                    // populateAdminPanel(); // Função antiga que pode ser removida se não for mais usada
+                if (isOwner) {
+                    openOwnerPanel();
                 } else {
-                    showNotification('🚫 Acesso restrito.', 'red');
+                    showNotification('🚫 Acesso restrito ao administrador autorizado.', 'red');
+                }
+            }
+            
+            // Atalho para Painel Admin
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                 if (isOwner) { // Only owner can access both panels
+                    openAdminPanel();
+                } else {
+                    showNotification('🚫 Acesso restrito ao administrador autorizado.', 'red');
                 }
             }
         });
-        // Funções do painel antigo (ceo_openBalanceModal, etc.) podem ser removidas se o novo painel as substitui completamente.
-        // Elas foram mantidas aqui para evitar erros caso ainda haja alguma referência a elas.
-        function ceo_openBalanceModal(action) { console.warn("Função antiga 'ceo_openBalanceModal' chamada."); }
-        function ceo_generateBonus() { console.warn("Função antiga 'ceo_generateBonus' chamada."); }
+
+        function openOwnerPanel() {
+            const loadingScreen = document.getElementById('ceo-loading-screen');
+            const ownerPanel = document.getElementById('owner-panel');
+            
+            loadingScreen.classList.remove('hidden');
+            
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                ownerPanel.classList.remove('hidden');
+                populateOwnerPanel();
+            }, 2000);
+        }
+        
+        function openAdminPanel() {
+            document.getElementById('admin-panel').classList.remove('hidden');
+            populateAdminPanel();
+        }
+
+        function populateOwnerPanel() {
+            const users = Object.values(usersDB.getUsers());
+            const totalBalance = users.reduce((acc, user) => acc + user.balance, 0);
+            
+            document.getElementById('ceo-total-balance').textContent = `R$ ${totalBalance.toFixed(2)}`;
+            document.getElementById('ceo-total-users').textContent = users.length;
+            document.getElementById('ceo-online-users').textContent = Math.floor(Math.random() * (users.length / 2)) + 1;
+            document.getElementById('ceo-profit-7d').textContent = `R$ ${(Math.random() * 5000 + 1000).toFixed(2)}`;
+            document.getElementById('ceo-bet-today').textContent = `R$ ${(Math.random() * 20000 + 5000).toFixed(2)}`;
+            
+            populateWithdrawalsList('ceo-withdrawals-list');
+            populateAuditLog();
+            updatePanelNotifications();
+        }
+
+        function populateAdminPanel() {
+             populateWithdrawalsList('admin-withdrawals-list', true); // Pass true for admin table format
+             const users = Object.values(usersDB.getUsers());
+             const usersListEl = document.getElementById('admin-users-list');
+             usersListEl.innerHTML = users.map(user => `
+                <tr class="border-b border-gray-800 hover:bg-gray-800">
+                    <td class="p-2">${user.fullName}</td>
+                    <td class="p-2">${user.email}</td>
+                    <td class="p-2 text-green-500">R$ ${user.balance.toFixed(2)}</td>
+                </tr>
+             `).join('');
+             updatePanelNotifications();
+        }
+        
+        function populateWithdrawalsList(elementId, isTable = false) {
+            const withdrawals = JSON.parse(localStorage.getItem('reivbet_pending_withdrawals') || '[]');
+            const listEl = document.getElementById(elementId);
+            if(withdrawals.length === 0) {
+                const message = `<p class="text-gray-500 text-center p-4 col-span-5">Nenhum saque pendente.</p>`;
+                listEl.innerHTML = isTable ? `<tr>${message}</tr>` : message;
+                return;
+            }
+            if (isTable) {
+                listEl.innerHTML = withdrawals.map(w => `
+                     <tr class="border-b border-gray-700 hover:bg-gray-800">
+                        <td class="p-2 text-gray-400">${new Date(w.date).toLocaleDateString('pt-BR')}</td>
+                        <td class="p-2 font-semibold">${w.userName}</td>
+                        <td class="p-2 text-green-400">R$ ${w.amount.toFixed(2)}</td>
+                        <td class="p-2 font-mono">${w.pixKey}</td>
+                        <td class="p-2">
+                            <div class="flex gap-2">
+                                <button onclick="handleWithdrawal('${w.id}', true)" class="bg-green-600 hover:bg-green-700 px-2 py-1 rounded text-xs"><i class="fas fa-check"></i></button>
+                                <button onclick="handleWithdrawal('${w.id}', false)" class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded text-xs"><i class="fas fa-times"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                 listEl.innerHTML = withdrawals.map(w => `
+                     <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-bold">${w.userName}</p>
+                            <p class="text-sm text-green-400">R$ ${w.amount.toFixed(2)}</p>
+                            <p class="text-xs text-gray-400 font-mono">PIX: ${w.pixKey}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="handleWithdrawal('${w.id}', true)" class="bg-green-600 hover:bg-green-700 p-2 rounded"><i class="fas fa-check"></i></button>
+                            <button onclick="handleWithdrawal('${w.id}', false)" class="bg-red-600 hover:bg-red-700 p-2 rounded"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        function logAdminAction(request, isApproved) {
+            let auditLog = JSON.parse(localStorage.getItem('reivbet_audit_log_v2') || '[]');
+            const logEntry = {
+                admin: currentUser.fullName,
+                action: isApproved ? 'APROVADO' : 'REJEITADO',
+                targetUser: request.userName,
+                amount: request.amount,
+                pixLast4: request.pixKey.slice(-4),
+                timestamp: new Date().toISOString(),
+                ip: `187.65.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}` // Simulated IP
+            };
+            auditLog.unshift(logEntry); // Add to the beginning
+            localStorage.setItem('reivbet_audit_log_v2', JSON.stringify(auditLog));
+        }
+        
+        function populateAuditLog() {
+            const auditLog = JSON.parse(localStorage.getItem('reivbet_audit_log_v2') || '[]');
+            const logEl = document.getElementById('ceo-audit-log');
+            if (auditLog.length === 0) {
+                 logEl.innerHTML = `<p class="text-gray-500">Nenhuma ação registrada.</p>`;
+                 return;
+            }
+            logEl.innerHTML = auditLog.map(log => {
+                const actionClass = log.action === 'APROVADO' ? 'text-green-400' : 'text-red-400';
+                return `
+                    <div class="bg-gray-900 p-2 rounded">
+                        <p><span class="font-bold ${actionClass}">${log.action}</span> por ${log.admin}</p>
+                        <p class="text-gray-400">R$${log.amount.toFixed(2)} para ${log.targetUser} (PIX ...${log.pixLast4})</p>
+                        <p class="text-gray-500">${new Date(log.timestamp).toLocaleString('pt-BR')} - IP: ${log.ip}</p>
+                    </div>
+                `
+            }).join('');
+        }
+
+        function handleWithdrawal(withdrawalId, isApproved) {
+            let withdrawals = JSON.parse(localStorage.getItem('reivbet_pending_withdrawals') || '[]');
+            const request = withdrawals.find(w => w.id === withdrawalId);
+            if (!request) return;
+
+            logAdminAction(request, isApproved); // Log the action
+
+            if (isApproved) {
+                showNotification(`Saque de R$${request.amount.toFixed(2)} para ${request.userName} APROVADO.`, 'green');
+                 // In a real scenario, this would trigger the payment API. Here, we just log it.
+            } else {
+                // Return balance to user
+                const user = usersDB.findUser(request.userId);
+                if(user) {
+                    const newBalance = user.balance + request.amount;
+                    usersDB.updateUser(user.cpf, { balance: newBalance });
+                     // If the rejected withdrawal belongs to the current user, update their UI
+                    if(currentUser && currentUser.cpf === user.cpf) {
+                        updateUserBalance(newBalance, null);
+                    }
+                }
+                showNotification(`Saque de R$${request.amount.toFixed(2)} para ${request.userName} REJEITADO. Saldo estornado.`, 'red');
+            }
+
+            // Remove from pending list
+            const updatedWithdrawals = withdrawals.filter(w => w.id !== withdrawalId);
+            localStorage.setItem('reivbet_pending_withdrawals', JSON.stringify(updatedWithdrawals));
+
+            // Refresh panels
+            if (!document.getElementById('owner-panel').classList.contains('hidden')) populateOwnerPanel();
+            if (!document.getElementById('admin-panel').classList.contains('hidden')) populateAdminPanel();
+        }
+        
+        function ceo_openBalanceModal(action) {
+            const title = action === 'add' ? 'Injetar Saldo' : 'Remover Saldo';
+            const buttonText = action === 'add' ? 'Adicionar' : 'Remover';
+            const buttonClass = action === 'add' ? 'bg-green-600' : 'bg-red-600';
+
+            let panel = document.getElementById('ceo-balance-modal');
+            if(panel) panel.remove();
+
+            const overlay = document.createElement("div");
+            overlay.id = 'ceo-balance-modal';
+            overlay.className = "fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[101]";
+            overlay.innerHTML = `
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 max-w-md w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">${title}</h3>
+                        <button onclick="this.closest('#ceo-balance-modal').remove()" class="text-gray-400 hover:text-white">&times;</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm mb-1">Usuário (CPF ou E-mail)</label>
+                            <input type="text" id="ceo-target-user" placeholder="Digite o CPF ou E-mail" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded" />
+                        </div>
+                        <div>
+                            <label class="block text-sm mb-1">Valor (R$)</label>
+                            <input id="ceo-amount" type="number" min="1" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded" />
+                        </div>
+                        <button onclick="ceo_executeBalanceAction('${action}')" class="w-full ${buttonClass} text-white font-bold py-2 px-4 rounded">
+                            ${buttonText}
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        function ceo_executeBalanceAction(action) {
+            const identifier = document.getElementById('ceo-target-user').value;
+            const value = parseFloat(document.getElementById('ceo-amount').value);
+            if (!identifier || isNaN(value) || value <= 0) {
+                showNotification("Identificador ou valor inválido.", "red"); return;
+            }
+            const target = usersDB.findUser(identifier);
+            if (!target) {
+                showNotification("Usuário não encontrado.", "red"); return;
+            }
+            
+            const newBalance = action === 'add' ? target.balance + value : target.balance - value;
+            if (newBalance < 0) {
+                 showNotification("A remoção deixaria o saldo do usuário negativo.", "red"); return;
+            }
+
+            usersDB.updateUser(target.cpf, { balance: newBalance });
+            showNotification(`Operação concluída para ${target.fullName}. Novo saldo: R$${newBalance.toFixed(2)}`, "green");
+            
+            if (currentUser.cpf === target.cpf) {
+                updateUserBalance(newBalance, action === 'add');
+            }
+            document.getElementById('ceo-balance-modal').remove();
+            populateOwnerPanel();
+        }
+
+        function ceo_generateBonus() {
+            const amountInput = document.getElementById('ceo-bonus-amount');
+            const amount = parseFloat(amountInput.value);
+            if(isNaN(amount) || amount <= 0) {
+                showNotification("Insira um valor de bônus válido.", "red"); return;
+            }
+            const code = `REIVMAX${Math.floor(Math.random() * 900) + 100}`;
+            
+            generatedBonusCodes.push({ code: code, amount: amount, used: false });
+            localStorage.setItem('reivbet_bonus_codes_v2', JSON.stringify(generatedBonusCodes));
+            
+            document.getElementById('ceo-bonus-result').innerHTML = `Código: <span class="text-green-400">${code}</span> | Valor: R$${amount.toFixed(2)}`;
+            showNotification(`Código ${code} de R$${amount.toFixed(2)} criado!`, "green");
+            amountInput.value = '';
+        }
+
+        function updatePanelNotifications() {
+            const withdrawals = JSON.parse(localStorage.getItem('reivbet_pending_withdrawals') || '[]');
+            const count = withdrawals.length;
+            const badgeCEO = document.getElementById('ceo-notification-badge');
+            const badgeAdmin = document.getElementById('admin-notification-badge');
+            
+            [badgeCEO, badgeAdmin].forEach(badge => {
+                if (badge) {
+                     if (count > 0) {
+                        badge.textContent = count;
+                        badge.classList.remove('hidden');
+                    } else {
+                        badge.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        document.getElementById('ceo-notification-bell').addEventListener('click', () => {
+            document.getElementById('ceo-withdrawals-title').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('notification-sound').play();
+        });
+        document.getElementById('admin-notification-bell').addEventListener('click', () => {
+            document.getElementById('admin-withdrawals-title').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('notification-sound').play();
+        });
         // ================================================================== //
-        // END: LÓGICA DO NOVO SISTEMA DE PAINEL CEO                          //
+        // END: LÓGICA DO NOVO SISTEMA DE PAINEL ADMIN E DONO                 //
         // ================================================================== //
 
     </script>
 </body>
-
 </html>
-
